@@ -576,6 +576,12 @@ input[type="submit"]:active {
 	margin-right: 0;
 }
 
+@media (max-width: 959px) {
+	#header ul li {
+		margin-right: 0;
+	}
+}
+
 #userinfo_username {
 	position: absolute;
 	top: -120px;
