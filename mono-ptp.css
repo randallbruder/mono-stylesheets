@@ -1892,26 +1892,12 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
 
 /*######### RESPONSIVE LAYOUT (Randy) #####################################*/
 /* The frame is capped at 960px (see #wrapper/#header/#content/#footer and the
-   fluid main-column/sidebar/search-bar widths above). These media queries adapt
-   the layout for anything narrower, down to phone width. */
+   fluid main-column/sidebar/search-bar widths above). The header band is
+   absolutely positioned and only fits at the full 960px, so below that we
+   linearize it into a compact, centered, horizontally-wrapping header. */
 
-/* ---- Tablet: stack the two content columns ---- */
-@media (max-width: 768px) {
-    #content .main-column,
-    #content .sidebar {
-        float: none;
-        width: 100%;}
-
-    #content .sidebar {
-        margin-top: 20px;}
-
-    /* search bar can now use the full row width */
-    .search-bar {
-        width: calc(100% - 263px);}
-}
-
-/* ---- Phone: pull the fixed header band into normal flow ---- */
-@media (max-width: 600px) {
+/* ---- Below the 960px cap: linearize the header band ---- */
+@media (max-width: 959px) {
     body {
         padding-top: 20px;}
 
@@ -1921,7 +1907,7 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
         margin-bottom: 20px;
         text-align: center;}
 
-    /* every absolutely-positioned header piece becomes static + stacked */
+    /* pull every absolutely-positioned header piece into normal flow */
     .site-logo,
     #userinfo_username,
     #userinfo_major,
@@ -1938,43 +1924,53 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
 
     .site-logo {
         width: 100%;
-        text-align: center;}
+        text-align: center;
+        border-bottom: none;}
 
     .site-logo a {
         width: auto;
         display: inline-block;}
 
+    /* user-info rows -> compact, centered, wrapping inline */
     #userinfo_username,
     #userinfo_major,
     #userinfo_minor {
         width: 100%;
         white-space: normal;
         text-align: center;
-        padding: 8px 0;
+        padding: 6px 0;
         background: none !important;
         border-radius: 0;}
 
-    #userinfo_minor li,
-    #userinfo_major li {
+    #userinfo_major li,
+    #userinfo_minor li {
+        position: static;
         float: none;
         display: inline-block;
-        margin: 0 4px;}
+        margin: 0 5px;}
 
-    /* main nav: centered, wrapping */
+    /* the row links default to display:block (one per line) -> inline them */
+    #userinfo_major li a,
+    #userinfo_minor li a {
+        display: inline-block;
+        padding: 2px 0;}
+
+    /* main nav -> centered, wrapping, with separators */
     .main-menu {
-        margin: 8px 0;}
+        margin: 6px 0;}
 
     .main-menu ul {
         text-align: center;}
 
     .main-menu ul li {
         display: inline-block;
-        padding: 0 8px;}
+        padding: 0 8px;
+        border-right: 1px solid #ccc;}
 
     .main-menu ul li:last-child {
         border-right: none;}
 
-    /* search bar + stats: full width, stacked */
+    /* search bar + stats -> full width, stacked */
     .search-bar {
         float: none;
         width: 100% !important;
@@ -1983,11 +1979,36 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
     .search-bar input {
         width: 100%;}
 
+    /* stats box: drop the fixed 245px absolute grid, let the items flow */
     #userinfo_stats {
         float: none;
-        margin: 12px auto 0;}
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin: 12px auto 0;
+        text-align: center;}
 
-    /* let wide tables scroll instead of forcing the page wider
+    #userinfo_stats li {
+        position: static !important;
+        display: inline-block !important;
+        width: auto !important;
+        top: auto;
+        left: auto;
+        margin: 0 7px;
+        border-bottom: none;}
+}
+
+/* ---- Stack the two content columns ---- */
+@media (max-width: 768px) {
+    #content .main-column,
+    #content .sidebar {
+        float: none;
+        width: 100%;}
+
+    #content .sidebar {
+        margin-top: 20px;}
+
+    /* let wide tables scroll rather than widen the page
        (:not(.hidden) so we don't override the .hidden display:none) */
     .torrent_table:not(.hidden),
     .forum_index:not(.hidden),
@@ -1997,16 +2018,20 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
         -webkit-overflow-scrolling: touch;}
 }
 
-/* ---- Phone: 4 posters across ---- */
-@media (max-width: 600px) {
+/* ---- Cover/Huge poster grids: step down 5 -> 4 -> 3 -> 2 ---- */
+@media (max-width: 800px) {
     .cover-movie-list__movie {
         width: calc((100% - 36px) / 4);}    /* 4 across (3 gaps of 12px) */
 }
 
-/* ---- Small phone: tighten the poster grids ---- */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .cover-movie-list__movie {
-        width: calc((100% - 24px) / 3);}   /* 3 posters across */
+        width: calc((100% - 24px) / 3);}    /* 3 across (2 gaps) */
+}
+
+@media (max-width: 440px) {
+    .cover-movie-list__movie {
+        width: calc((100% - 12px) / 2);}    /* 2 across (1 gap) */
 
     .huge-movie-list__movie {
         flex-direction: column;
