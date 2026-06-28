@@ -62,7 +62,7 @@ h3 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 960px;
+    width: 100%;
     margin: 0 auto;
     display: block;
     border-bottom: 2px solid #dfdfdf;}
@@ -598,7 +598,7 @@ textarea {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     position: relative;
-    width: 697px;
+    width: calc(100% - 263px); /* fill the row beside the fixed 245px stats box */
     padding: 15px;
     z-index: 1;}
 
@@ -635,7 +635,8 @@ textarea {
     border-right:  none;}
 
 #content, #wrapper, #header, #footer {
-    width: 960px;}
+    width: 100%;
+    max-width: 960px;}
 
 #content {
     margin: 0 auto !important;
@@ -646,11 +647,11 @@ textarea {
 
 #content .main-column {
     float: left;
-    width: 695px;}
+    width: 72.4%;}
 
 #content .sidebar {
     float: right;
-    width: 245px;}
+    width: 25.5%;}
 
 #collage_table {
     margin-bottom: 20px;
@@ -1887,3 +1888,136 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
 .tabs__panel--active {
     display: block;}
 /*######### END COVER / HUGE / TABS #####################################*/
+
+
+/*######### RESPONSIVE LAYOUT (Randy) #####################################*/
+/* The frame is capped at 960px (see #wrapper/#header/#content/#footer and the
+   fluid main-column/sidebar/search-bar widths above). These media queries adapt
+   the layout for anything narrower, down to phone width. */
+
+/* ---- Tablet: stack the two content columns ---- */
+@media (max-width: 768px) {
+    #content .main-column,
+    #content .sidebar {
+        float: none;
+        width: 100%;}
+
+    #content .sidebar {
+        margin-top: 20px;}
+
+    /* search bar can now use the full row width */
+    .search-bar {
+        width: calc(100% - 263px);}
+}
+
+/* ---- Phone: pull the fixed header band into normal flow ---- */
+@media (max-width: 600px) {
+    body {
+        padding-top: 20px;}
+
+    #header {
+        position: static;
+        height: auto;
+        margin-bottom: 20px;
+        text-align: center;}
+
+    /* every absolutely-positioned header piece becomes static + stacked */
+    .site-logo,
+    #userinfo_username,
+    #userinfo_major,
+    #userinfo_minor,
+    .main-menu,
+    .alert-bars {
+        position: static;
+        top: auto;
+        right: auto;
+        left: auto;}
+
+    .alert-bars {
+        display: none;}
+
+    .site-logo {
+        width: 100%;
+        text-align: center;}
+
+    .site-logo a {
+        width: auto;
+        display: inline-block;}
+
+    #userinfo_username,
+    #userinfo_major,
+    #userinfo_minor {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+        padding: 8px 0;
+        background: none !important;
+        border-radius: 0;}
+
+    #userinfo_minor li,
+    #userinfo_major li {
+        float: none;
+        display: inline-block;
+        margin: 0 4px;}
+
+    /* main nav: centered, wrapping */
+    .main-menu {
+        margin: 8px 0;}
+
+    .main-menu ul {
+        text-align: center;}
+
+    .main-menu ul li {
+        display: inline-block;
+        padding: 0 8px;}
+
+    .main-menu ul li:last-child {
+        border-right: none;}
+
+    /* search bar + stats: full width, stacked */
+    .search-bar {
+        float: none;
+        width: 100% !important;
+        margin-top: 12px;}
+
+    .search-bar input {
+        width: 100%;}
+
+    #userinfo_stats {
+        float: none;
+        margin: 12px auto 0;}
+
+    /* let wide tables scroll instead of forcing the page wider
+       (:not(.hidden) so we don't override the .hidden display:none) */
+    .torrent_table:not(.hidden),
+    .forum_index:not(.hidden),
+    #request_table:not(.hidden) {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;}
+}
+
+/* ---- Phone: 4 posters across ---- */
+@media (max-width: 600px) {
+    .cover-movie-list__movie {
+        width: calc((100% - 36px) / 4);}    /* 4 across (3 gaps of 12px) */
+}
+
+/* ---- Small phone: tighten the poster grids ---- */
+@media (max-width: 480px) {
+    .cover-movie-list__movie {
+        width: calc((100% - 24px) / 3);}   /* 3 posters across */
+
+    .huge-movie-list__movie {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;}
+
+    .huge-movie-list__movie__cover {
+        flex: 0 0 auto;
+        width: 130px;}
+
+    .huge-movie-list__movie__details {
+        width: 100%;}
+}
+/*######### END RESPONSIVE LAYOUT #####################################*/
