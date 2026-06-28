@@ -1,13 +1,18 @@
 /*
-Mono What.cd Stylesheet
-Ported to PTP by arithmetic
+    Mono — PassThePopcorn
+    Based on the Mono What.cd stylesheet by Callum Jefferies (callumj),
+    ported to PTP by arithmetic, with later additions.
 
-Author:  Callum Jefferies (callumj)
-Contact: callum.jefferies@gmail.com
-Date:    23/01/2011
-
-All icons Copyright (c) Callum Jefferies 2011
+    Reorganized into logical sections; no styles changed.
+    The cascade is order-sensitive, so within each section rules keep their
+    original relative order, and all @media queries stay together at the end.
 */
+
+
+/* ========================================================================
+   Reset & box-sizing
+   ======================================================================== */
+
 
 * {
     margin: 0;
@@ -15,6 +20,12 @@ All icons Copyright (c) Callum Jefferies 2011
 
 *, *:before, *:after {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+
+
+/* ========================================================================
+   Base elements, typography & form controls
+   ======================================================================== */
+
 
 body {
     padding: 120px 20px 60px 20px;
@@ -58,41 +69,52 @@ h3 {
     font-size: 14pt;
     line-height: 14pt;}
 
-.site-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin: 0 auto;
+a, textarea, input {
+    outline: none;}
+
+form#quickpostform #subject-container input#title {
     display: block;
-    border-bottom: 2px solid #dfdfdf;}
+    margin: 0 auto;}
 
-.site-logo a {
-    width: 250px;
-    height: 40px;}
+form#quickpostform textarea {
+    height: 160px;
+    margin: 0 auto;}
 
-.site-logo a:after {
-    content: "passthepopcorn";
-    text-transform: lowercase;
-    color: #2a2a2a;
-    padding: 15px 10px;
-    display: inline-block;
-    font-family: Helvetica;
-    font-size: 22pt;
-    font-weight: bold;}
+div.thin br+h3, /*.panel.pad > h3*/ {
+    margin: 0 0 15px 15px;}
+
+textarea, input[type="text"], input[type="password"], .select {
+    width: 195px;
+    padding: 8px;
+    background: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border: 1px solid #adadad;
+    font: 12pt 'Lucida Grande', Helvetica, Arial, sans-serif;
+    color: #444;
+    -webkit-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15);
+    -webkit-background-clip: padding-box;}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
+    -webkit-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);
+    -moz-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);}
+
+textarea {
+    resize: none;
+    display: block;
+    width: 550px;
+    height: 120px;
+    font-size: 10pt;}
+
+
+/* ========================================================================
+   Layout frame & content columns
+   ======================================================================== */
+
 
 #wrapper {
     margin: 0 auto;}
-
-#header {
-    margin: 0 auto;}
-
-#header ul li {
-    display: inline;
-    margin-right: 10px;}
-
-#header ul li:last-child {
-    margin-right: 0;}
 
 #footer {
     margin: 0 auto;
@@ -101,6 +123,47 @@ h3 {
     text-align: center;
     border-top: 2px solid #ddd;
     color: #666;}
+
+.sidebar input[type="text"], .sidebar textarea {
+    width: 202px;}
+
+.sidebar select, .sidebar input {
+    margin-bottom: 10px;}
+
+.sidebar ol {
+    margin-left: 20px;}
+
+#content, .thin {
+    overflow: hidden;
+    clear: both;}
+
+#content, #wrapper, #header, #footer {
+    width: 100%;
+    max-width: 960px;}
+
+#content {
+    margin: 0 auto !important;
+    overflow: hidden;}
+
+#content .main-column, #content .sidebar {
+    position: relative;}
+
+#content .main-column {
+    float: left;
+    width: 72.4%;}
+
+#content .sidebar {
+    float: right;
+    width: 25.5%;}
+
+.sidebar .panel ul li {
+    list-style: none;}
+
+
+/* ========================================================================
+   Helpers: utilities, colour/size classes, grid system
+   ======================================================================== */
+
 
 .hidden {
     display: none;}
@@ -125,32 +188,53 @@ ul.list--inline-full-width li {
     display: table-cell;}
 
 .r00 {color: #F00;}
+
 .r01, .snatchlist-status--not-hnr {color: #FF1300;}
+
 .r02 {color: #FF1300;}
+
 .r03 {color: #FF2600;}
+
 .r04 {color: #FF4C00;}
+
 .r05 {color: #FF5E00;}
+
 .r06 {color: #FF5E00;}
+
 .r07 {color: #FF7100;}
+
 .r08 {color: #fd4337;}
+
 .r09 {color: #FA0;}
+
 .r10 {color: #74C42E;}
+
 .r20 {color: #418B00;}
+
 .r50 {color: #418B00;}
+
 .r99 {color: #418B00;}
 
-.color-me-red, .snatchlist-status--hnr, .snatchlist-status--not-seeding, .forum-topic__new {color: #B0443C;}
 .color-me-green, .snatchlist-status--not-hnr, .snatchlist-status--seeding {color: #3CB05E;}
 
 .size1, .bbcode-size-1 {font-size: 0.75em;}
+
 .size2, .bbcode-size-2 {font-size: 1em;}
+
 .size3, .bbcode-size-3 {font-size: 1.25em;}
+
 .size4, .bbcode-size-4 {font-size: 1.5em;}
+
 .size5, .bbcode-size-5 {font-size: 1.75em;}
+
 .size6, .bbcode-size-6 {font-size: 2em;}
+
 .size7, .bbcode-size-7 {font-size: 2.25em;}
+
 .size8, .bbcode-size-8 {font-size: 2.5em;}
+
 .size9, .bbcode-size-9 {font-size: 2.75em;}
+
 .size10, .bbcode-size-10 {font-size: 3em;}
 
 *[class^="bbcode-size-"] {
@@ -161,9 +245,6 @@ ul.list--inline-full-width li {
 
 .grid {
     margin: 0 -15px;}
-
-.grid + .grid, .grid + .list--inline-full-width, .search-form__footer, .form__group + .form_group {
-    margin-top: 15px;}
 
 .grid__item {
     float: left;
@@ -231,85 +312,92 @@ ul.list--inline-full-width li {
 .form__input.grid-u-1 {
     width: 100% !important;}
 
-.form--horizontal .panel__body > *:not(:last-child) {
-    margin-bottom: 15px;}
-
 .form--horizontal .grid .grid__item:first-child {
     text-align: right;}
 
 .generic-form__footer {
     margin-top: 1em;}
 
-.search-form__footer--right-aligned {
-    text-align: right;}
-
-.star-rating {
-    height: 25px;
-    list-style: none;
-    position: relative;}
-
-.star-rating__current-user, .star-rating__site {
-    background-image: url("https://static.passthepopcorn.me/static/common/stars/stars.png");
-    background-position: left 125px;
-    display: block;
-    height: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 175px;
-    z-index: 2;}
-
-.star-rating__site {
-    background-position: left 100px;
-    z-index: 1;}
-
-.large-torrent-list-group-opener, .large-torrent-list-group-opener__link {
-    height: 25px;
-    width: 25px;}
-
-.large-torrent-list-group-opener__link {
-    background-image: url('https://what.cd/static/styles/mono/icons/show-hide.png');
-    background-repeat: no-repeat;
-    background-position: top center;}
-
 .table--bordered {
     border: 1px solid #aeaeae;}
 
-/* clearfixes */
-.grid:after, .star-rating:after, .forum-post__heading:after, .forum-post__avatar-and-body:after {
-    content: " ";
+ul.nobullet {
+    list-style-type: none;}
+
+
+/* ========================================================================
+   Buttons
+   ======================================================================== */
+
+
+button, input[type="button"], input[type="submit"], #userinfo_username .user-info-bar__item:not(:first-child) a {
+    cursor: pointer;
+    padding: 6px 8px;
+    font: 12pt Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    text-transform: lowercase;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset -1px 1px 0 rgba(255, 255, 255, 0.18);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset -1px 1px 0 rgba(255, 255, 255, 0.18);
+    background: -webkit-gradient(linear, left 40%, left 120%, from(#5f5f5f), to(#575757));
+    background: -moz-linear-gradient(center bottom, #575757, #5f5f5f);
+    border: 1px solid #4d4d4d;}
+
+button:active, input[type="button"]:active, input[type="submit"]:active, #userinfo_username .user-info-bar__item:not(:first-child) a:active {
+    background: -webkit-gradient(linear, left 40%, left 120%, from(#575757), to(#5f5f5f));
+    background: -moz-linear-gradient(center bottom, #5f5f5f, #575757);}
+
+button+button,
+button+input[type="button"],
+input[type="button"]+input[type="button"],
+input[type="button"]+button {
+    margin-left: 3px;}
+
+input[type="submit"]:active {
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);}
+
+
+/* ========================================================================
+   Site header: logo, user-info bar, stats, search, main menu, alerts
+   ======================================================================== */
+
+
+.site-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
     display: block;
-    height: 0;
-    clear: both;
-    overflow: hidden;
-    visibility: hidden;}
+    border-bottom: 2px solid #dfdfdf;}
 
-/*################ IMAGE REPLACEMENT ########################*/
-/* some icons by http://www.famfamfam.com/lab/icons/silk/ a pretty awesome icon set if i must say so myself
-some from callumj */
+.site-logo a {
+    width: 250px;
+    height: 40px;}
 
-img[src="static/common/check.png"],  img[src="static/common/x.png"] {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: top left;
-    height: 0 !important;
-    overflow: hidden;}
+.site-logo a:after {
+    content: "passthepopcorn";
+    text-transform: lowercase;
+    color: #2a2a2a;
+    padding: 15px 10px;
+    display: inline-block;
+    font-family: Helvetica;
+    font-size: 22pt;
+    font-weight: bold;}
 
-img[src="static/common/check.png"] {
-    background-image: url('http://www.famfamfam.com/lab/icons/silk/icons/accept.png');
-    padding-top: 16px;
-    width: 16px !important;}
+#header {
+    margin: 0 auto;}
 
-img[src="static/common/x.png"] {
-    background-image: url('http://www.famfamfam.com/lab/icons/silk/icons/cancel.png');
-    padding-top: 16px;
-    width: 16px !important;}
+#header ul li {
+    display: inline;
+    margin-right: 10px;}
 
-/*################ END IMAGE REPLACEMENT ########################*/
-
-
-#discog_table.torrent_table .colhead_dark td:nth-child(4) {
-    width: 15%;}
+#header ul li:last-child {
+    margin-right: 0;}
 
 #userinfo_username {
     position: absolute;
@@ -328,8 +416,6 @@ img[src="static/common/x.png"] {
     position: absolute;
     top: -110px;}
 
-
-/*################ ADMIN NOTIFICATIONS ########################*/
 #alerts a[href="tools.php"], #alerts a[href="reportsv2.php"], #alerts a[href="reports.php"] {
     background-color: transparent;
     background-repeat: no-repeat;
@@ -355,8 +441,6 @@ img[src="static/common/x.png"] {
 #alerts a[href="reports.php"] {
     background-image: url('http://www.famfamfam.com/lab/icons/silk/icons/page_error.png');
     left: 170px;}
-/*################ END ADMIN NOTIFICATIONS #####################*/
-
 
 .search-bar, #userinfo_stats {
     margin-top: 105px;}
@@ -414,9 +498,6 @@ img[src="static/common/x.png"] {
 
 [class$="user-info-bar__link--highlighted"] {
     font-weight: bold;}
-
-
-
 
 #userinfo_major {
     right: 0;
@@ -481,35 +562,6 @@ img[src="static/common/x.png"] {
 #userinfo_stats a {
     color: #f4f4f4;}
 
-#discog_table.torrent_table .colhead_dark td:first-child {
-    width: 50px !important;}
-
-button, input[type="button"], input[type="submit"], #userinfo_username .user-info-bar__item:not(:first-child) a {
-    cursor: pointer;
-    padding: 6px 8px;
-    font: 12pt Helvetica, Arial, sans-serif;
-    text-decoration: none;
-    text-transform: lowercase;
-    color: #fff;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset -1px 1px 0 rgba(255, 255, 255, 0.18);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset -1px 1px 0 rgba(255, 255, 255, 0.18);
-    background: -webkit-gradient(linear, left 40%, left 120%, from(#5f5f5f), to(#575757));
-    background: -moz-linear-gradient(center bottom, #575757, #5f5f5f);
-    border: 1px solid #4d4d4d;}
-
-button:active, input[type="button"]:active, input[type="submit"]:active, #userinfo_username .user-info-bar__item:not(:first-child) a:active {
-    background: -webkit-gradient(linear, left 40%, left 120%, from(#575757), to(#5f5f5f));
-    background: -moz-linear-gradient(center bottom, #5f5f5f, #575757);}
-
-button+button,
-button+input[type="button"],
-input[type="button"]+input[type="button"],
-input[type="button"]+button {
-    margin-left: 3px;}
-
 #userinfo_username a {
     font-size: 11pt;
     color: #555;}
@@ -533,64 +585,6 @@ input[type="button"]+button {
     -moz-border-radius-topleft: 0;
     -webkit-border-bottom-left-radius: 0;
     -moz-border-radius-bottomleft: 0;}
-
-input[type="submit"]:active {
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);}
-
-a, textarea, input {
-    outline: none;}
-
-form#quickpostform #subject-container input#title {
-    display: block;
-    margin: 0 auto;}
-
-form#quickpostform textarea {
-    height: 160px;
-    margin: 0 auto;}
-
-div.thin br+h3, /*.panel.pad > h3*/ {
-    margin: 0 0 15px 15px;}
-
-.panel.pad > h3 {
-    margin-top: 15px;}
-
-textarea, input[type="text"], input[type="password"], .select {
-    width: 195px;
-    padding: 8px;
-    background: #fff;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border: 1px solid #adadad;
-    font: 12pt 'Lucida Grande', Helvetica, Arial, sans-serif;
-    color: #444;
-    -webkit-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15);
-    -webkit-background-clip: padding-box;}
-
-textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
-    -webkit-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);
-    -moz-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);}
-
-textarea {
-    resize: none;
-    display: block;
-    width: 550px;
-    height: 120px;
-    font-size: 10pt;}
-
-.sidebar input[type="text"], .sidebar textarea {
-    width: 202px;}
-
-.sidebar select, .sidebar input {
-    margin-bottom: 10px;}
-
-.sidebar ol {
-    margin-left: 20px;}
-
-#content, .thin {
-    overflow: hidden;
-    clear: both;}
 
 .search-bar {
     float: left;
@@ -634,100 +628,34 @@ textarea {
     padding-right: none;
     border-right:  none;}
 
-#content, #wrapper, #header, #footer {
-    width: 100%;
-    max-width: 960px;}
+.search-bar input { width: 156px; }
 
-#content {
-    margin: 0 auto !important;
-    overflow: hidden;}
+#stats_hnrs {
+    width: 50px;
+}
 
-#content .main-column, #content .sidebar {
-    position: relative;}
+#stats_hnrs + #stats_hnrs {
+    left: 183px;
+    border-bottom: none;
+}
 
-#content .main-column {
-    float: left;
-    width: 72.4%;}
 
-#content .sidebar {
-    float: right;
-    width: 25.5%;}
+/* ========================================================================
+   Panels, headings, tables & shared chrome
+   ======================================================================== */
 
-#collage_table {
-    margin-bottom: 20px;
-    background: none;
-    border: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;}
 
-#collage_table tr td {
-    padding-bottom: 10px;}
+.form--horizontal .panel__body > *:not(:last-child) {
+    margin-bottom: 15px;}
 
-#collage_table tr:last-child td {
-    padding-bottom: 0px;}
-
-#collage_table td img {
-    width: 135px;
-    /*height: 140px; not appropriate for movie covers*/}
-
-#collage_table, .forum_index, .torrent_table, .forum_post.panel, .recent, table.border, .torrent_table.grouping, #userhistory table {
-    width: 100% !important;}
-
-table[width="100%"], body:not(#staff):not(#snatchlist):not(#friends) .panel:not(.generic-form), .table--panel-like, .torrent_table, #request_table, .forum_index, table.border, table.noborder, .linkbox+table, form#messageform table , .main_column table , form[action="user.php"] table, table.staff, #userhistory table, #upload #upload_table > table, .forum-post, .forum_post {
-    margin-bottom: 20px;
-    /*padding: 10px;*/
-    background: #fff;
-    border: 1px solid #aeaeae;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    color: #565656;}
+.panel.pad > h3 {
+    margin-top: 15px;}
 
 .table--panel-like {
     width: 100%;}
 
-#torrents #roster {
-    padding: 0px;
-    border-width: 0px;}
-
-table#recent_snatches, .panel.pad > table.noborder, #torrents #roster table {
-    width: 100%;}
-
 .panel.linkbox {
     width: auto;}
-
-body#log .panel#latest_data {
-    background: transparent;
-    border-width: 0px;
-    margin-top: 10px;
-    padding: 0px;}
-
-.panel #contest table {
-    width: 100%;}
-
-#bonus table.panel, .panel.pad, #bonus #content > .panel {
-    width: auto;}
-
-#bp_send table.panel, #bonus .panel table.panel {
-    width: 100%;}
-
-#bonus table.panel input[name='extra'], #bonus table.panel input[name='points'] {
-    margin-bottom: 5px;}
-
-a[class$="movies__link"], a[class$="movie__link"], a[class$="movie__cover-link"] {
-    width: 100%;
-    height: 177px;
-    display: inline-block;
-    background-size: cover;
-    background-position: center;}
-
-/* Cover-view poster sizing handled in the "COVER / HUGE / TABS" section at end of file */
-
-#index #last5 td {
-    vertical-align: top;
-    padding: .1em;}
-
-#index #last5t +  table th {
-    text-align: left;}
 
 .panel.pad {
     padding: 0 !important;
@@ -736,65 +664,14 @@ a[class$="movies__link"], a[class$="movie__link"], a[class$="movie__cover-link"]
     -webkit-box-shadow: none;
     -moz-box-shadow: none;}
 
-.panel__heading, .table--panel-like thead td, .table--panel-like thead th, .colhead td, .recent .colhead td, .colhead_dark td, td.colhead, .forum-post__heading, .forum_post tr:first-child td {
-    /*margin: -11px;
-    margin-bottom: 10px;*/
-    padding: 8px !important;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
-    background: -moz-linear-gradient(center bottom, #ccc, #ddd);
-    border: 1px solid #aeaeae;
-    border-bottom-color: #bbb !important;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    font: bold 10pt Helvetica, Arial, sans-serif !important;
-    color: #575757 !important;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);}
-
-.panel__heading, .forum-post__heading {
-    border-top-width: 0;
-    border-right-width: 0;
-    border-left-width: 0;}
-
-.panel__heading:last-child, .forum-post__heading:last-child {
-    margin-bottom: -15px;}
-
 div:not(.panel) > .panel__heading {
     margin: 0px;}
 
 .panel__heading#getmorenews {
     margin: 0px;}
 
-body:not(#staff):not(#snatchlist):not(#friends) .panel__body {
-    margin: 11px;}
-
 .panel__body > table {
     width: 100%;}
-
-table[width="100%"] td, .torrent_table td, #request_table td, #collages td, .forum_index td, table.border td, .linkbox+table td, form#messageform table td, form[action="user.php"] table td, table.staff td.nobr,  #staff table td, #inbox form table td, #user .thin > .panel.pad table.noborder td, .table--bordered td {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-bottom: none;}
-
-.torrent_table .colhead_dark td:first-child {
-    width: 70%;}
-
-.torrent_table tr.group td.small {
-    vertical-align: top;}
-
-#bookmarks .torrent_table .colhead_dark td:first-child {
-    width: 5%;}
-
-table[width="100%"] td:first-child, .torrent_table td:first-child, #request_table td:first-child, #collages td:first-child, .forum_index td:first-child, #torrent_table td:first-child, table.border td:first-child, .linkbox+table td:first-child, form#messageform table td:first-child, #inbox form table td:first-child, #forums table:not(#newthreadtext) tr:nth-child(2) td:first-child, .table--bordered td:first-child {
-    border-left: 1px solid #aeaeae;}
-
-table[width="100%"] td:last-child, .torrent_table td:last-child, #request_table td:last-child, #collages td:last-child, .forum_index td:last-child, #torrent_table td:last-child, table.border td:last-child, .linkbox+table td:last-child, form#messageform table td:last-child, #inbox form table td:last-child, .table--bordered td:last-child {
-    border-right: 1px solid #aeaeae;}
-
-table.staff td.nobr,  #staff table td {
-    border-right: 1px solid #ccc !important;}
-
-table.staff td.nobr:last-child,  #staff table td:last-child {
-    border-right: 1px solid #aeaeae !important;}
 
 .linkbox, .pagination {
     margin-bottom: 20px;
@@ -818,24 +695,625 @@ table.staff td.nobr:last-child,  #staff table td:last-child {
 .table--panel-like thead .toggle {
     font-size: 1.33em;}
 
-/*.main_column .panel:not(.pad) {
-    width: 675px;}*/
+.form--horizontal .panel__body > *:not(:first-child), .form--horizontal .panel__body form > *:not(:first-child), .panel.search-form .panel__body > *:not(:first-child) {
+    border-top: 1px solid #d1d1d1;
+    padding-top: 15px;}
 
-/*.main_column .panel__heading {
-    width: 679px;}*/
+.form--horizontal .panel__body form > input[type="hidden"]:first-child + .grid, .form--horizontal .panel__body form > input[type="hidden"] + .grid {
+    border-top-width: 0;
+    padding-top: 0;}
 
-.sidebar .panel ul li {
-    list-style: none;}
+div.thin >h2+div, div.thin >h2+.linkbox+div {
+    margin-bottom: 20px;}
+
+div.thin >h2+.linkbox+div td {
+    padding-left: 10px !important;}
+
+div.thin >h2+div >form table td.label, div.thin >h2+.linkbox+div form table td.label {
+    width: 20%;
+    padding-right: 10px;
+    text-align: right;}
+
+table.border[width="100%"] {
+    margin-bottom: 0;}
+
+td.colhead  {
+    margin: -11px;
+    margin-bottom: 10px;
+    padding: 8px !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
+    background: -moz-linear-gradient(center bottom, #ccc, #ddd);
+    border: 1px solid #aeaeae !important;
+    border-bottom-color: #bbb !important;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    font: bold 10pt Helvetica, Arial, sans-serif !important;
+    color: #575757 !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);}
+
+.pagination { margin-bottom: 0; }
 
 
-/*######### FORUMS #####################################*/
+/* ========================================================================
+   Icons, star ratings & image replacement
+   ======================================================================== */
+
+
+.star-rating {
+    height: 25px;
+    list-style: none;
+    position: relative;}
+
+.star-rating__current-user, .star-rating__site {
+    background-image: url("https://static.passthepopcorn.me/static/common/stars/stars.png");
+    background-position: left 125px;
+    display: block;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 175px;
+    z-index: 2;}
+
+.star-rating__site {
+    background-position: left 100px;
+    z-index: 1;}
+
+.large-torrent-list-group-opener, .large-torrent-list-group-opener__link {
+    height: 25px;
+    width: 25px;}
+
+.large-torrent-list-group-opener__link {
+    background-image: url('https://what.cd/static/styles/mono/icons/show-hide.png');
+    background-repeat: no-repeat;
+    background-position: top center;}
+
+img[src="static/common/check.png"],  img[src="static/common/x.png"] {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: top left;
+    height: 0 !important;
+    overflow: hidden;}
+
+img[src="static/common/check.png"] {
+    background-image: url('http://www.famfamfam.com/lab/icons/silk/icons/accept.png');
+    padding-top: 16px;
+    width: 16px !important;}
+
+img[src="static/common/x.png"] {
+    background-image: url('http://www.famfamfam.com/lab/icons/silk/icons/cancel.png');
+    padding-top: 16px;
+    width: 16px !important;}
+
+.cats_col {
+    width: 25px;}
+
+.cats_music, .cats_comics, .cats_audiobooks, .cats_elearningvideos, .cats_comedy, .cats_applications, .cats_ebooks {
+    width: 25px !important;
+    height: 25px !important;
+    margin: 0 !important;}
+
+.cats_music {
+    background: url('http://what.cd/static/styles/mono/icons/music.png');}
+
+.cats_comics {
+    background: url('http://what.cd/static/styles/mono/icons/comics.png');}
+
+.cats_audiobooks {
+    background: url('http://what.cd/static/styles/mono/icons/audiobooks.png');}
+
+.cats_elearningvideos {
+    background: url('http://what.cd/static/styles/mono/icons/elearning.png');}
+
+.cats_comedy {
+    background: url('http://what.cd/static/styles/mono/icons/comedy.png');}
+
+.cats_applications {
+    background: url('http://what.cd/static/styles/mono/icons/applications.png');}
+
+.cats_ebooks {
+    background: url('http://what.cd/static/styles/mono/icons/ebooks.png');}
+
+
+/* ========================================================================
+   Torrents & movie lists (list, cover, huge views, filters)
+   ======================================================================== */
+
+
+.grid + .grid, .grid + .list--inline-full-width, .search-form__footer, .form__group + .form_group {
+    margin-top: 15px;}
+
+.search-form__footer--right-aligned {
+    text-align: right;}
+
+#discog_table.torrent_table .colhead_dark td:nth-child(4) {
+    width: 15%;}
+
+#discog_table.torrent_table .colhead_dark td:first-child {
+    width: 50px !important;}
+
+#torrents #roster {
+    padding: 0px;
+    border-width: 0px;}
+
+table#recent_snatches, .panel.pad > table.noborder, #torrents #roster table {
+    width: 100%;}
+
+.torrent_table .colhead_dark td:first-child {
+    width: 70%;}
+
+.torrent_table tr.group td.small {
+    vertical-align: top;}
+
+#bookmarks .torrent_table .colhead_dark td:first-child {
+    width: 5%;}
+
+.torrent_table td {
+    vertical-align: top;}
+
+.basic-movie-list__details-row td:first-child {
+    vertical-align: top;}
+
+.basic-movie-list__details-row td:first-child a {
+    display: inline-block;}
+
+.basic-movie-list__details-row td:first-child, .basic-movie-list__movie__cover-link, .basic-movie-list__movie__cover {
+    width: 120px !important;}
+
+.basic-movie-list__movie__rating-container {
+    display: inline-block;
+    margin-right: .5em;}
+
+.basic-movie-list__movie__tags {
+    display: block;}
+
+div:not(.linkbox) > [id^="bookmarklink"] {
+    float: right;}
+
+[id^="bookmarklink"]:before {
+    content: "[";}
+
+[id^="bookmarklink"]:after {
+    content: "]";}
+
+.linkbox .linkbox__link[id^="bookmarklink"]:before, .linkbox .linkbox__link[id^="bookmarklink"]:after {
+    content: "";}
+
+.basic-movie-list__torrent-edition {}
+
+.torrent_table.sign {
+    text-align: center;}
+
+.torrent_table .group {
+    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
+    background: -moz-linear-gradient(center bottom, #eee, #f3f3f3);}
+
+.torrent_table .group strong {
+    font-size: 12pt;}
+
+.torrent_table .group strong a {
+    color: #444;}
+
+.torrent_table thead th a[href="torrents.php?order_way=asc&order_by=time&"]:after {
+    content: "Time";}
+
+.torrent_table thead th a[href="torrents.php?order_way=asc&order_by=time&"] img[alt="Time"], #encodeoffers #content th img[alt="Time"] {
+    display: none;}
+
+.recent {
+    margin-bottom: 20px !important;
+    padding: 0;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);}
+
+.recent td {
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #aeaeae;
+    border-right: 1px solid #ccc;
+    border-left: none;
+    border-top: none;}
+
+.recent td:first-child {
+    border-left: 1px solid #aeaeae;}
+
+.recent td:last-child {
+    border-right: 1px solid #aeaeae;}
+
+.recent td img {
+    width: 118px;
+    height: 118px;}
+
+#recommended .panel__heading {
+    margin-bottom: -11px !important;
+    border-bottom-color: #aeaeae !important;}
+
+#recommended #vanityhouse {
+    margin-top: 21px;}
+
+.hide_torrents a, .show_torrents a {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url('http://what.cd/static/styles/mono/icons/show-hide.png');
+    background-repeat: no-repeat;}
+
+.hide_torrents a {
+    background-position: center top;}
+
+.show_torrents a {
+    background-position: center bottom;}
+
+#torrent_table .colhead td[width="100%"] {
+    width: 50% !important;}
+
+#discog_table .panel.center {
+    background: #f8f8f8;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-border-radius: 5px;}
+
+#discog_table .panel.center a {
+    color: #666;
+    font-weight: bold;
+    margin-right: 5px;
+    line-height: 18pt;}
+
+.basic-movie-list__torrent__action {
+    float: right;
+    visibility: collapse;}
+
+.basic-movie-list__torrent__action a {
+    visibility: visible;}
+
+.basic-movie-list__torrent__action a:before {
+    content: "[";}
+
+.basic-movie-list__torrent__action a:after {
+    content: "]";}
+
+.filter_torrents .search-form__footer {
+    position: relative;}
+
+.filter_torrents .search-form__footer__results, .filter_torrents input[value="Filter Torrents"], .filter_torrents select[name="seen"] {
+    float: left;}
+
+.filter_torrents input[value="Filter Torrents"] {
+    position: relative;
+    top: 0;
+    left: 0px;}
+
+.filter_torrents select[name="seen"] {
+    position: absolute;
+    top: 15px;
+    left: 120px;}
+
+.search-form__footer__results {
+    font-size: 12pt;
+    color:  #444;
+    line-height: 24pt;}
+
+.search-form__footer__results:not(:last-child) {
+    position: absolute;
+    top: 15px;
+    left: 240px;
+    width: 0;
+    white-space: nowrap;}
+
+.filter_torrents .search-form__footer__results:not(:last-child):before {
+    content: "(";}
+
+.filter_torrents .search-form__footer__results:not(:last-child):after {
+    content: ")";}
+
+#taglist td {
+    text-align: center;}
+
+#SnatchData .panel__body {
+    text-align: center;}
+
+#SnatchData .panel__body input[name="search"] {
+    width: 50%;}
+
+.small-cover-movie-list__movie {
+    float: left;
+    margin-right: 1%;
+    width: 19%;}
+
+div.thin >h2+div >form table, div.thin >h2+.linkbox+div table, .filter_torrents table {
+    width: 100%;}
+
+div.thin >h2+.linkbox+div table td:first-child, .filter_torrents table:nth-child(1) td:first-child {
+    font-size: 10pt;}
+
+.filter_torrents table.cat_list td {
+    width: 8% !important;
+    text-align: center !important;}
+
+.filter_torrents table:nth-child(2) td {
+    padding: 17px 0 15px 0 !important;width
+    background: #e0e0e0;}
+
+.filter_torrents .cat_list[width="100%"] {
+    background: #e4e4e4;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;}
+
+ul#torrentscomplete {
+    position: absolute;
+    left: 15px;
+    top: 40px;
+    z-index: 1;
+    list-style: decimal;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid #bbb;
+    background: #fff;
+    color: #444;}
+
+#torrentscomplete li:first-child {
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topright: 4px;}
+
+#torrentscomplete li:last-child {
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -moz-border-radius-bottomright: 4px;}
+
+#torrentscomplete li {
+    cursor: pointer;
+    display: block !important;
+    -webkit-box-sizing: border-box;
+    margin: 5px 10px !important;}
+
+#torrentscomplete li.highlight {
+    background: #f5f5f5;}
+
+#torrentscomplete li:hover {
+    text-decoration: underline;}
+
+#torrents h2+div.linkbox+h3+table.border >tbody >tr td:nth-child(2) {
+    width: 55% !important;}
+
+div.pad ul, div.body ul, table.torrent_table blockquote>ul {
+    padding-left: 15px;}
+
+.basic-movie-list__movie__bookmark {
+  margin-left: 20px;
+}
+
+.basic-movie-list__movie__bookmark:after {
+    content: ']';
+    color: #3b7ab0;
+}
+
+.basic-movie-list__movie__bookmark:before {
+    content: '[';
+    color: #3b7ab0;
+}
+
+.cover-movie-list__movie__tags {
+    display: block;
+}
+
+.cover-movie-list__container {
+    margin-bottom: 20px;}
+
+.cover-movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;}
+
+.cover-movie-list > div:not(.cover-movie-list__movie) {
+    display: none;}
+
+.cover-movie-list__movie {
+    width: calc((100% - 48px) / 5);
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #aeaeae;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;}
+
+.cover-movie-list .cover-movie-list__movie__cover-link {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    background-size: cover !important;
+    background-position: center top !important;
+    border-bottom: 1px solid #ddd;}
+
+.cover-movie-list__movie__undercover {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 8px;}
+
+.cover-movie-list__movie__title-row {
+    margin-bottom: 4px;
+    line-height: 1.25;}
+
+.cover-movie-list__movie__title {
+    font-weight: bold;
+    color: #444;}
+
+.cover-movie-list__movie__year {
+    color: #888;}
+
+.cover-movie-list__movie__new {
+    color: #B0443C;}
+
+.cover-movie-list__movie__rating-and-tags {
+    margin-top: auto;
+    font-size: 8pt;}
+
+.cover-movie-list__movie__rating {
+    font-weight: bold;}
+
+.cover-movie-list__movie__tags {
+    display: block;
+    margin-top: 2px;
+    color: #888;}
+
+.huge-movie-list__movie {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #aeaeae;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    color: #565656;}
+
+.huge-movie-list__movie__cover {
+    flex: 0 0 130px;
+    width: 130px;}
+
+.huge-movie-list__movie__cover__link {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background-size: cover !important;
+    background-position: center top !important;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;}
+
+.huge-movie-list__movie__details {
+    flex: 1 1 auto;
+    min-width: 0;}
+
+.huge-movie-list__movie__title-row {
+    margin-bottom: 6px;}
+
+.huge-movie-list__movie__title {
+    font-weight: bold;
+    font-size: 12pt;
+    color: #444;}
+
+.huge-movie-list__movie__year,
+.huge-movie-list__movie__director-list,
+.huge-movie-list__movie__director {
+    color: #888;}
+
+.huge-movie-list__movie__new {
+    color: #B0443C;}
+
+.huge-movie-list__movie__tag-list {
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 8.5pt;}
+
+.huge-movie-list__movie__ratings-and-synopsis {
+    width: 100%;
+    margin: 0;
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;}
+
+.huge-movie-list__movie__ratings {
+    width: auto;
+    margin: 0;
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;}
+
+.huge-movie-list__movie__ratings-and-synopsis td,
+.huge-movie-list__movie__ratings td {
+    padding: 2px 4px;
+    border: none;
+    vertical-align: middle;}
+
+.huge-movie-list__movie__synopsis {
+    padding-left: 14px;
+    vertical-align: top;}
+
+.huge-movie-list__movie__action-row {
+    margin: 8px 0;}
+
+.huge-movie-list__movie__torrent-summary {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+    font-size: 8.5pt;}
+
+.huge-movie-list__movie__torrent-summary__row {
+    padding: 1px 0;}
+
+.huge-movie-list__movie__torrent-summary__row__title {
+    font-weight: bold;
+    color: #666;}
+
+
+/* ========================================================================
+   Forums
+   ======================================================================== */
+
+
+.color-me-red, .snatchlist-status--hnr, .snatchlist-status--not-seeding, .forum-topic__new {color: #B0443C;}
+
+.grid:after, .star-rating:after, .forum-post__heading:after, .forum-post__avatar-and-body:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;}
+
+#collage_table, .forum_index, .torrent_table, .forum_post.panel, .recent, table.border, .torrent_table.grouping, #userhistory table {
+    width: 100% !important;}
+
+.panel__heading, .table--panel-like thead td, .table--panel-like thead th, .colhead td, .recent .colhead td, .colhead_dark td, td.colhead, .forum-post__heading, .forum_post tr:first-child td {
+    /*margin: -11px;
+    margin-bottom: 10px;*/
+    padding: 8px !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
+    background: -moz-linear-gradient(center bottom, #ccc, #ddd);
+    border: 1px solid #aeaeae;
+    border-bottom-color: #bbb !important;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    font: bold 10pt Helvetica, Arial, sans-serif !important;
+    color: #575757 !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);}
+
+.panel__heading, .forum-post__heading {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;}
+
+.panel__heading:last-child, .forum-post__heading:last-child {
+    margin-bottom: -15px;}
+
 #forums .cat_list td {
     border-left-width: 0px;
-    border-right-width: 0px;}/*
-    border-bottom-width: 1px;}
-
-#forums .cat_list tr:last-child td {
-    border-bottom-width: 0px;}*/
+    border-right-width: 0px;}
 
 #forums form table.border tr td, .forum-post tr td {
     border-bottom: 1px solid #aeaeae;}
@@ -917,9 +1395,6 @@ span.last_read a:hover {
     max-width: 120px;
     height: auto;}
 
-/*.forum-post__avatar img[src*="//static.passthepopcorn.me/static/common/avatars/"] {
-    left: 25px !important;}*/
-
 .forum-post__body {
     padding: 15px;
     display: table-cell;
@@ -936,16 +1411,6 @@ span.last_read a:hover {
 
 .forum-post ul, .forum-post ol {
     margin-left: 25px;}
-
-.forum-post blockquote,  #inbox div.body>blockquote, .torrent_table blockquote {
-    padding: 10px;
-    background: #fafafa url('http://what.cd/static/styles/mono/icons/quote-mark.png') no-repeat 98% 5px;
-    border: 1px solid #ddd;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;}
-
-/*#forums h4.min_padding,  #forums .last_topic {
-    font-size: 11px;}*/
 
 .user_title span {
     text-shadow: none;}
@@ -972,262 +1437,17 @@ span.last_read a:hover {
 
 #newthreadform > table {
     margin: 0 auto;}
-/*######### END FORUMS #####################################*/
 
+body:not(#forums) table.border[width="100%"] tbody tr:nth-child(5) td {
+    padding-bottom: 0;
+    border-bottom: none !important;}
 
 
-/*######### TORRENTS #####################################*/
-.torrent_table td {
-    vertical-align: top;}
+/* ========================================================================
+   Requests
+   ======================================================================== */
 
-.basic-movie-list__details-row td:first-child {
-    vertical-align: top;}
 
-.basic-movie-list__details-row td:first-child a {
-    display: inline-block;}
-
-.basic-movie-list__details-row td:first-child, .basic-movie-list__movie__cover-link, .basic-movie-list__movie__cover {
-    width: 120px !important;}
-
-.basic-movie-list__movie__rating-container {
-    display: inline-block;
-    margin-right: .5em;}
-
-.basic-movie-list__movie__tags {
-    display: block;}
-
-div:not(.linkbox) > [id^="bookmarklink"] {
-    float: right;}
-
-[id^="bookmarklink"]:before {
-    content: "[";}
-
-[id^="bookmarklink"]:after {
-    content: "]";}
-
-.linkbox .linkbox__link[id^="bookmarklink"]:before, .linkbox .linkbox__link[id^="bookmarklink"]:after {
-    content: "";}
-
-.basic-movie-list__torrent-edition {}
-
-.torrent_table.sign {
-    text-align: center;}
-
-.torrent_table .group {
-    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
-    background: -moz-linear-gradient(center bottom, #eee, #f3f3f3);}
-
-.torrent_table .group strong {
-    font-size: 12pt;}
-
-.torrent_table .group strong a {
-    color: #444;}
-
-/* replace the icon with text to match what */
-.torrent_table thead th a[href="torrents.php?order_way=asc&order_by=time&"]:after {
-    content: "Time";}
-
-.torrent_table thead th a[href="torrents.php?order_way=asc&order_by=time&"] img[alt="Time"], #encodeoffers #content th img[alt="Time"] {
-    display: none;}
-
-.recent {
-    margin-bottom: 20px !important;
-    padding: 0;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);}
-
-.recent td {
-    padding: 10px;
-    background: #fff;
-    border: 1px solid #aeaeae;
-    border-right: 1px solid #ccc;
-    border-left: none;
-    border-top: none;}
-
-.recent td:first-child {
-    border-left: 1px solid #aeaeae;}
-
-.recent td:last-child {
-    border-right: 1px solid #aeaeae;}
-
-.recent td img {
-    width: 118px;
-    height: 118px;}
-
-.cats_col {
-    width: 25px;}
-
-.cats_music, .cats_comics, .cats_audiobooks, .cats_elearningvideos, .cats_comedy, .cats_applications, .cats_ebooks {
-    width: 25px !important;
-    height: 25px !important;
-    margin: 0 !important;}
-
-.cats_music {
-    background: url('http://what.cd/static/styles/mono/icons/music.png');}
-
-.cats_comics {
-    background: url('http://what.cd/static/styles/mono/icons/comics.png');}
-
-.cats_audiobooks {
-    background: url('http://what.cd/static/styles/mono/icons/audiobooks.png');}
-
-.cats_elearningvideos {
-    background: url('http://what.cd/static/styles/mono/icons/elearning.png');}
-
-.cats_comedy {
-    background: url('http://what.cd/static/styles/mono/icons/comedy.png');}
-
-.cats_applications {
-    background: url('http://what.cd/static/styles/mono/icons/applications.png');}
-
-.cats_ebooks {
-    background: url('http://what.cd/static/styles/mono/icons/ebooks.png');}
-
-#recommended .panel__heading {
-    margin-bottom: -11px !important;
-    border-bottom-color: #aeaeae !important;}
-
-#recommended #vanityhouse {
-    margin-top: 21px;}
-
-.hide_torrents a, .show_torrents a {
-    display: block;
-    width: 25px;
-    height: 25px;
-    background-image: url('http://what.cd/static/styles/mono/icons/show-hide.png');
-    background-repeat: no-repeat;}
-
-.hide_torrents a {
-    background-position: center top;}
-
-.show_torrents a {
-    background-position: center bottom;}
-
-#torrent_table .colhead td[width="100%"] {
-    width: 50% !important;}
-
-#discog_table .panel.center {
-    background: #f8f8f8;
-    border: none;
-    padding: 10px;
-    text-align: center;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-border-radius: 5px;}
-
-#discog_table .panel.center a {
-    color: #666;
-    font-weight: bold;
-    margin-right: 5px;
-    line-height: 18pt;}
-
-.basic-movie-list__torrent__action {
-    float: right;
-    visibility: collapse;}
-
-.basic-movie-list__torrent__action a {
-    visibility: visible;}
-
-.basic-movie-list__torrent__action a:before {
-    content: "[";}
-
-.basic-movie-list__torrent__action a:after {
-    content: "]";}
-
-.form--horizontal .panel__body > *:not(:first-child), .form--horizontal .panel__body form > *:not(:first-child), .panel.search-form .panel__body > *:not(:first-child) {
-    border-top: 1px solid #d1d1d1;
-    padding-top: 15px;}
-
-.form--horizontal .panel__body form > input[type="hidden"]:first-child + .grid, .form--horizontal .panel__body form > input[type="hidden"] + .grid {
-    border-top-width: 0;
-    padding-top: 0;}
-
-.filter_torrents .search-form__footer {
-    position: relative;}
-
-.filter_torrents .search-form__footer__results, .filter_torrents input[value="Filter Torrents"], .filter_torrents select[name="seen"] {
-    float: left;}
-
-.filter_torrents input[value="Filter Torrents"] {
-    position: relative;
-    top: 0;
-    left: 0px;}
-
-.filter_torrents select[name="seen"] {
-    position: absolute;
-    top: 15px;
-    left: 120px;}
-
-.search-form__footer__results {
-    font-size: 12pt;
-    color:  #444;
-    line-height: 24pt;}
-
-.search-form__footer__results:not(:last-child) {
-    position: absolute;
-    top: 15px;
-    left: 240px;
-    width: 0;
-    white-space: nowrap;}
-
-.filter_torrents .search-form__footer__results:not(:last-child):before {
-    content: "(";}
-
-.filter_torrents .search-form__footer__results:not(:last-child):after {
-    content: ")";}
-
-#taglist td {
-    text-align: center;}
-
-#movie-ratings-table td {
-    border-width: 0;
-    white-space: nowrap;}
-
-#SnatchData .panel__body {
-    text-align: center;}
-
-#SnatchData .panel__body input[name="search"] {
-    width: 50%;}
-/*######### END TORRENTS #####################################*/
-
-
-
-/*######### COLLAGES #####################################*/
-/* organize in rows of 5 */
-.small-cover-movie-list__movie {
-    float: left;
-    margin-right: 1%;
-    width: 19%;}
-/*######### END COLLAGES #####################################*/
-
-
-
-/*######### FRIENDS #####################################*
-#friends .forum_post tr td[width="50px"] {
-    border-right: 1px solid #DDD !important;
-    width: auto;}
-
-#friends .forum_post td:nth-child(2) textarea {
-    width: 100%;}
-
-#friends .forum_post td:last-child {
-    padding: 10px !important;}
-
-#friends .forum_post tr:nth-child(2) img {
-    width: 110px;}
-
-#friends .forum_post td:last-child input[type="submit"] {
-    margin-bottom: 5px;
-    max-width: 100%;
-    width: 100%;}
-
-#friends .forum_post td:last-child input:last-child {
-    margin-bottom: 0px;}
-/*######### END FRIENDS #####################################*/
-
-
-
-/*######### REQUESTS #####################################*/
 #requests .main_column tr td:first-child {
     font-weight: bold;
     text-align: right;}
@@ -1248,23 +1468,42 @@ div:not(.linkbox) > [id^="bookmarklink"] {
 
 #requests .sidebar .panel_votes table tr:last-child td {
     border-bottom-width: 0px !important;}
-/*######### END REQUESTS #####################################*/
+
+#requests div.thin div:nth-child(3) form table:nth-child(6) td {
+    padding-top: 13px !important;
+    padding: 13px 0 0 0 !important;
+    border-bottom: 0 !important;}
+
+#torrents .filter_torrents .panel.pad table:nth-child(1) tr:first-child td, #requests div.thin div:nth-child(3) form table:nth-child(3) tr:first-child td, #collage div.thin form table:nth-child(2) tr:first-child td {
+    padding-top: 0 !important;}
+
+body:not(#user):not(#requests) table.noborder, body:not(#user):not(#requests) table.noborder tr, body:not(#user):not(#requests) table.noborder tr td, body:not(#user):not(#requests) table[border="0"] tr td {
+    border-width: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;}
 
 
-
-/*######### TOP 10 #####################################*/
-/* Layout handled by the shared cover-movie-list flex grid (end of file).
-   The old float/19%-width rule fought that grid's gap and produced 4 columns. */
-/*######### END TOP 10 #####################################*/
+/* ========================================================================
+   Collages & Top 10
+   ======================================================================== */
 
 
+#collage_table {
+    margin-bottom: 20px;
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;}
 
-#torrents .filter_torrents, body:not(#user) .panel.form--horizontal:not(.panel--no-margin), #torrents div.thin > h2 + div > form, #requests div.thin div:nth-child(3) form, #inbox #searchbox, .search-form {
-    padding: 15px !important;
-    background: #e4e4e4 !important;
-    border: none !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;}
+#collage_table tr td {
+    padding-bottom: 10px;}
+
+#collage_table tr:last-child td {
+    padding-bottom: 0px;}
+
+#collage_table td img {
+    width: 135px;
+    /*height: 140px; not appropriate for movie covers*/}
 
 #collage div.thin form table {
     background: none;
@@ -1275,70 +1514,27 @@ div:not(.linkbox) > [id^="bookmarklink"] {
 .collage#actor_table td {
     width: 20% !important;}
 
-#requests div.thin div:nth-child(3) form table:nth-child(6) td {
-    padding-top: 13px !important;
-    padding: 13px 0 0 0 !important;
-    border-bottom: 0 !important;}
-
 #torrents div.thin >h2+div >form div.submit, #collage div.thin form div.submit {
     padding-top: 13px;}
 
-div.thin >h2+div, div.thin >h2+.linkbox+div {
-    margin-bottom: 20px;}
-
-div.thin >h2+div >form table, div.thin >h2+.linkbox+div table, .filter_torrents table {
-    width: 100%;}
-
-/*div.thin >h2+.linkbox+div table {
-    border: none;
-    background: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;}*/
-
-/*body:not(#user):not(#staff):not(#forums) div.thin > h2 + div table td, body:not(#inbox) div.thin > h2 + .linkbox + div table td, .filter_torrents table td {
-    padding: 10px 0;
-    border: none !important;
-    border-bottom: 1px solid #d1d1d1 !important;}*/
-
-#user div.thin > h2 + div table tr td:not(.panel__heading):nth-child(3) {
-    border-left-width: 0px !important;}
-
-#user div.thin > h2 + div table tr td:not(.panel__heading):nth-child(2) {
-    border-right-width: 0px !important;}
-
-div.thin >h2+.linkbox+div td {
-    padding-left: 10px !important;}
-
-div.thin >h2+.linkbox+div table td:first-child, .filter_torrents table:nth-child(1) td:first-child {
-    font-size: 10pt;}
-
-#torrents .filter_torrents .panel.pad table:nth-child(1) tr:first-child td, #requests div.thin div:nth-child(3) form table:nth-child(3) tr:first-child td, #collage div.thin form table:nth-child(2) tr:first-child td {
-    padding-top: 0 !important;}
-
-.filter_torrents table.cat_list td {
-    width: 8% !important;
-    text-align: center !important;}
-
-.filter_torrents table:nth-child(2) td {
-    padding: 17px 0 15px 0 !important;width
-    background: #e0e0e0;}
-
-.filter_torrents .cat_list[width="100%"] {
-    background: #e4e4e4;
-    border: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;}
-
-div.thin >h2+div >form table td.label, div.thin >h2+.linkbox+div form table td.label {
-    width: 20%;
-    padding-right: 10px;
-    text-align: right;}
-
-div.thin >h2+div >form table td.label {
-    width: 12%;}
+#torrents #collages.panel ul {
+    padding-left: 0px;11px11px}
 
 
-/*######### UPLOAD #############################*/
+/* ========================================================================
+   Upload
+   ======================================================================== */
+
+
+table[width="100%"], body:not(#staff):not(#snatchlist):not(#friends) .panel:not(.generic-form), .table--panel-like, .torrent_table, #request_table, .forum_index, table.border, table.noborder, .linkbox+table, form#messageform table , .main_column table , form[action="user.php"] table, table.staff, #userhistory table, #upload #upload_table > table, .forum-post, .forum_post {
+    margin-bottom: 20px;
+    /*padding: 10px;*/
+    background: #fff;
+    border: 1px solid #aeaeae;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    color: #565656;}
+
 #upload_table > table {
     background: #fff;
     width: 100%;}
@@ -1362,163 +1558,38 @@ div.thin >h2+div >form table td.label {
 
 #upload #upload_table table tr:last-child td {
     border-bottom-width: 0px;}
-/*######### END UPLOAD ##########################*/
 
 
-
-/*######### ARTIST COMPLETE ##############################*/
-/*lerk08 edited below*/
-ul#torrentscomplete {
-    position: absolute;
-    left: 15px;
-    top: 40px;
-    z-index: 1;
-    list-style: decimal;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    border: 1px solid #bbb;
-    background: #fff;
-    color: #444;}
-
-#torrentscomplete li:first-child {
-    -webkit-border-top-left-radius: 4px;
-    -moz-border-radius-topleft: 4px;
-    -webkit-border-top-right-radius: 4px;
-    -moz-border-radius-topright: 4px;}
-
-#torrentscomplete li:last-child {
-    -webkit-border-bottom-left-radius: 4px;
-    -moz-border-radius-bottomleft: 4px;
-    -webkit-border-bottom-right-radius: 4px;
-    -moz-border-radius-bottomright: 4px;}
-
-#torrentscomplete li {
-    cursor: pointer;
-    display: block !important;
-    -webkit-box-sizing: border-box;
-    margin: 5px 10px !important;}
-
-#torrentscomplete li.highlight {
-    background: #f5f5f5;}
-
-#torrentscomplete li:hover {
-    text-decoration: underline;}
-/*######### END ARTIST COMPLETE ##########################*/
+/* ========================================================================
+   Inbox
+   ======================================================================== */
 
 
+table[width="100%"] td, .torrent_table td, #request_table td, #collages td, .forum_index td, table.border td, .linkbox+table td, form#messageform table td, form[action="user.php"] table td, table.staff td.nobr,  #staff table td, #inbox form table td, #user .thin > .panel.pad table.noborder td, .table--bordered td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-bottom: none;}
 
-/*######### LIGHTBOX #####################################*/
-.curtain {
-    background: rgba(0, 0, 0, 0.8);
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 199;}
+table[width="100%"] td:first-child, .torrent_table td:first-child, #request_table td:first-child, #collages td:first-child, .forum_index td:first-child, #torrent_table td:first-child, table.border td:first-child, .linkbox+table td:first-child, form#messageform table td:first-child, #inbox form table td:first-child, #forums table:not(#newthreadtext) tr:nth-child(2) td:first-child, .table--bordered td:first-child {
+    border-left: 1px solid #aeaeae;}
 
-.lightbox {
-    background-color: rgba(0, 0, 0, .4);
-    min-height: 100%;
-    height: 100%;
-    overflow-x: auto;
-    overflow-y: none;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 200;}
+table[width="100%"] td:last-child, .torrent_table td:last-child, #request_table td:last-child, #collages td:last-child, .forum_index td:last-child, #torrent_table td:last-child, table.border td:last-child, .linkbox+table td:last-child, form#messageform table td:last-child, #inbox form table td:last-child, .table--bordered td:last-child {
+    border-right: 1px solid #aeaeae;}
 
-.lightbox img {
-    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
-    display: block;
-    margin: 100px auto;}
-/*######### END LIGHTBOX #####################################*/
+.forum-post blockquote,  #inbox div.body>blockquote, .torrent_table blockquote {
+    padding: 10px;
+    background: #fafafa url('http://what.cd/static/styles/mono/icons/quote-mark.png') no-repeat 98% 5px;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;}
 
-
-#torrents h2+div.linkbox+h3+table.border >tbody >tr td:nth-child(2) {
-    width: 55% !important;}
-
-form[action="user.php"] table textarea, form[action="user.php"] table input[type="text"] {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;}
-
-h3#irc+div.panel.pad, h3#general+div.panel.pad:not(#bp_send) {
-    padding: 30px !important;
-    background: #f8f8f8;
+#torrents .filter_torrents, body:not(#user) .panel.form--horizontal:not(.panel--no-margin), #torrents div.thin > h2 + div > form, #requests div.thin div:nth-child(3) form, #inbox #searchbox, .search-form {
+    padding: 15px !important;
+    background: #e4e4e4 !important;
+    border: none !important;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;}
 
-h3#irc+div.panel.pad ul, h3#general+div.panel.pad ul {
-    list-style: none;}
-
-h3#irc+div.panel.pad ul li, h3#general+div.panel.pad ul li {
-    margin-bottom: 8px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;}
-
-h3#irc+div.panel.pad ul li:last-child, h3#general+div.panel.pad ul li:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;}
-
-table.border[width="100%"] {
-    margin-bottom: 0;}
-
-body:not(#forums) table.border[width="100%"] tbody tr:nth-child(5) td {
-    padding-bottom: 0;
-    border-bottom: none !important;}
-
-body:not(#user):not(#requests) table.noborder, body:not(#user):not(#requests) table.noborder tr, body:not(#user):not(#requests) table.noborder tr td, body:not(#user):not(#requests) table[border="0"] tr td {
-    border-width: 0px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;}
-
-#threadpoll p {
-    margin-bottom: 20px;
-    font-size: 16px;}
-
-ul.nobullet {
-    list-style-type: none;}
-
-
-/*################ GRAPH ##########################*/
-li.graph {
-    width: 100%;
-    height: 20px;
-    margin-bottom: 10px;
-    padding: 5px;
-    background: #f4f4f4;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;}
-
-li.graph .left_poll {
-    }
-
-li.graph .center_poll {
-    display: block;
-    height: 8px !important;
-    background: #666;
-    border: 1px solid #5a5a5a;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-box-shadow: inset 0 -2px 3px #555;
-    -moz-box-shadow: inset 0 -2px 3px #555;}
-
-#index .graph .center_poll {
-    margin-top: 0;}
-
-li.graph .right_poll {
-    }
-/*################ END GRAPH ##########################*/
-
-
-
-/*######### INBOX #####################################*/
 #inbox form table {
     margin-top: 20px;}
 
@@ -1533,305 +1604,23 @@ li.graph .right_poll {
 
 #inbox #messageform table tr.colhead td {
     width: auto;}
-/*######### END INBOX #####################################*/
-
-/*td  {
-    border: 1px solid #BBB;
-    padding: 5px;
-    text-align: left;}*/
-
-td.colhead  {
-    margin: -11px;
-    margin-bottom: 10px;
-    padding: 8px !important;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
-    background: -moz-linear-gradient(center bottom, #ccc, #ddd);
-    border: 1px solid #aeaeae !important;
-    border-bottom-color: #bbb !important;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    font: bold 10pt Helvetica, Arial, sans-serif !important;
-    color: #575757 !important;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);}
-
-div.permission_container {
-    float: left;
-    width: 32%;}
-
-div.permission_container:nth-child(2) {
-    padding: 0px 2%;}
-
-div.permission_container>table {
-    width: 100%;}
-
-div.pad ul, div.body ul, table.torrent_table blockquote>ul {
-    padding-left: 15px;}
-
-#torrents #collages.panel ul {
-    padding-left: 0px;11px11px}
-
-#debug_database pre, #debug_report pre {
-    white-space: pre-wrap;}
 
 
-/* Randy's Additions */
-
-.pagination { margin-bottom: 0; }
-.search-bar input { width: 156px; }
-
-.qtip, .qtip {
-    position: absolute;
-    left: -28000px;
-    top: -28000px;
-    display: none;
-    max-width: 280px;
-    min-width: 50px;
-    font-size: 10.5px;
-    line-height: 12px;
-    border-width: 1px;
-    border-style: solid;
-}
-.qtip-content {
-    position: relative;
-    padding: 5px 9px;
-    overflow: hidden;
-    text-align: left;
-    word-wrap: break-word;
-}
-.qtip-shadow {
-    -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
-}
-.qtip:not(.ie9haxors) div.qtip-content, .qtip:not(.ie9haxors) div.qtip-titlebar {
-    filter: none;
-    -ms-filter: none;
-}
-.qtip .qtip-tip {
-    margin: 0 auto;
-    overflow: hidden;
-    z-index: 10;
-}
-.qtip .qtip-tip, .qtip .qtip-tip * {
-    position: absolute;
-    color: #123456;
-    background: transparent;
-    border: 0 dashed transparent;
-}
-.qtip .qtip-tip canvas {
-    top: 0;
-    left: 0;
-}
-.qtip-ptp {
-    background: rgba(0, 0, 0, 0.92);
-    line-height: normal !important;
-    max-width: none !important;
-    color: #fff;
-    border-color: gray;
-    border-radius: 4px 4px 4px 4px;
-    border-style: solid;
-    border-width: 2px !important;
-}
-
-.basic-movie-list__movie__bookmark {
-  margin-left: 20px;
-}
-.basic-movie-list__movie__bookmark:after {
-    content: ']';
-    color: #3b7ab0;
-}
-.basic-movie-list__movie__bookmark:before {
-    content: '[';
-    color: #3b7ab0;
-}
-.cover-movie-list__movie__tags {
-    display: block;
-}
-
-#stats_hnrs {
-    width: 50px;
-}
-
-#stats_hnrs + #stats_hnrs {
-    left: 183px;
-    border-bottom: none;
-}
+/* ========================================================================
+   User profile & tabs
+   ======================================================================== */
 
 
-/*######### COVER / HUGE / TABS (Randy) #####################################*/
+#user div.thin > h2 + div table tr td:not(.panel__heading):nth-child(3) {
+    border-left-width: 0px !important;}
 
-/*------------- Cover view: poster grid -------------*/
-.cover-movie-list__container {
-    margin-bottom: 20px;}
+#user div.thin > h2 + div table tr td:not(.panel__heading):nth-child(2) {
+    border-right-width: 0px !important;}
 
-.cover-movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;}
+form[action="user.php"] table textarea, form[action="user.php"] table input[type="text"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;}
 
-/* Drop the legacy float-clearing divs that otherwise become stray flex items */
-.cover-movie-list > div:not(.cover-movie-list__movie) {
-    display: none;}
-
-/* 5 posters across the 695px main column */
-.cover-movie-list__movie {
-    width: calc((100% - 48px) / 5);
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border: 1px solid #aeaeae;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;}
-
-.cover-movie-list .cover-movie-list__movie__cover-link {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 2 / 3;
-    background-size: cover !important;
-    background-position: center top !important;
-    border-bottom: 1px solid #ddd;}
-
-.cover-movie-list__movie__undercover {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    padding: 8px;}
-
-.cover-movie-list__movie__title-row {
-    margin-bottom: 4px;
-    line-height: 1.25;}
-
-.cover-movie-list__movie__title {
-    font-weight: bold;
-    color: #444;}
-
-.cover-movie-list__movie__year {
-    color: #888;}
-
-.cover-movie-list__movie__new {
-    color: #B0443C;}
-
-.cover-movie-list__movie__rating-and-tags {
-    margin-top: auto;
-    font-size: 8pt;}
-
-.cover-movie-list__movie__rating {
-    font-weight: bold;}
-
-.cover-movie-list__movie__tags {
-    display: block;
-    margin-top: 2px;
-    color: #888;}
-
-
-/*------------- Huge view: poster + details rows -------------*/
-.huge-movie-list__movie {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding: 12px;
-    background: #fff;
-    border: 1px solid #aeaeae;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    color: #565656;}
-
-.huge-movie-list__movie__cover {
-    flex: 0 0 130px;
-    width: 130px;}
-
-.huge-movie-list__movie__cover__link {
-    display: block;
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    background-size: cover !important;
-    background-position: center top !important;
-    border: 1px solid #ddd;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;}
-
-.huge-movie-list__movie__details {
-    flex: 1 1 auto;
-    min-width: 0;}
-
-.huge-movie-list__movie__title-row {
-    margin-bottom: 6px;}
-
-.huge-movie-list__movie__title {
-    font-weight: bold;
-    font-size: 12pt;
-    color: #444;}
-
-.huge-movie-list__movie__year,
-.huge-movie-list__movie__director-list,
-.huge-movie-list__movie__director {
-    color: #888;}
-
-.huge-movie-list__movie__new {
-    color: #B0443C;}
-
-.huge-movie-list__movie__tag-list {
-    margin-bottom: 10px;
-    color: #888;
-    font-size: 8.5pt;}
-
-/* Inner ratings / synopsis tables: strip default table chrome */
-.huge-movie-list__movie__ratings-and-synopsis {
-    width: 100%;
-    margin: 0;
-    background: none;
-    border: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;}
-
-.huge-movie-list__movie__ratings {
-    width: auto;
-    margin: 0;
-    background: none;
-    border: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;}
-
-.huge-movie-list__movie__ratings-and-synopsis td,
-.huge-movie-list__movie__ratings td {
-    padding: 2px 4px;
-    border: none;
-    vertical-align: middle;}
-
-.huge-movie-list__movie__synopsis {
-    padding-left: 14px;
-    vertical-align: top;}
-
-.huge-movie-list__movie__action-row {
-    margin: 8px 0;}
-
-.huge-movie-list__movie__torrent-summary {
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #eee;
-    font-size: 8.5pt;}
-
-.huge-movie-list__movie__torrent-summary__row {
-    padding: 1px 0;}
-
-.huge-movie-list__movie__torrent-summary__row__title {
-    font-weight: bold;
-    color: #666;}
-
-
-/*------------- Profile tabs -------------*/
 .tabs__bar {
     margin-bottom: 20px;
     border-bottom: 1px solid #aeaeae;}
@@ -1881,22 +1670,242 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
 .tabs__bar__item--active .tabs__bar__link {
     color: #444;}
 
-/* Only the active panel is visible (JS toggles the --active class) */
 .tabs__panel {
     display: none;}
 
 .tabs__panel--active {
     display: block;}
-/*######### END COVER / HUGE / TABS #####################################*/
 
 
-/*######### RESPONSIVE LAYOUT (Randy) #####################################*/
-/* The frame is capped at 960px (see #wrapper/#header/#content/#footer and the
-   fluid main-column/sidebar/search-bar widths above). The header band is
-   absolutely positioned and only fits at the full 960px, so below that we
-   linearize it into a compact, centered, horizontally-wrapping header. */
+/* ========================================================================
+   Miscellaneous pages (bonus, staff, permissions, debug, index)
+   ======================================================================== */
 
-/* ---- Below the 960px cap: linearize the header band ---- */
+
+body#log .panel#latest_data {
+    background: transparent;
+    border-width: 0px;
+    margin-top: 10px;
+    padding: 0px;}
+
+.panel #contest table {
+    width: 100%;}
+
+#bonus table.panel, .panel.pad, #bonus #content > .panel {
+    width: auto;}
+
+#bp_send table.panel, #bonus .panel table.panel {
+    width: 100%;}
+
+#bonus table.panel input[name='extra'], #bonus table.panel input[name='points'] {
+    margin-bottom: 5px;}
+
+a[class$="movies__link"], a[class$="movie__link"], a[class$="movie__cover-link"] {
+    width: 100%;
+    height: 177px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;}
+
+#index #last5 td {
+    vertical-align: top;
+    padding: .1em;}
+
+#index #last5t +  table th {
+    text-align: left;}
+
+body:not(#staff):not(#snatchlist):not(#friends) .panel__body {
+    margin: 11px;}
+
+table.staff td.nobr,  #staff table td {
+    border-right: 1px solid #ccc !important;}
+
+table.staff td.nobr:last-child,  #staff table td:last-child {
+    border-right: 1px solid #aeaeae !important;}
+
+#movie-ratings-table td {
+    border-width: 0;
+    white-space: nowrap;}
+
+div.thin >h2+div >form table td.label {
+    width: 12%;}
+
+h3#irc+div.panel.pad, h3#general+div.panel.pad:not(#bp_send) {
+    padding: 30px !important;
+    background: #f8f8f8;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;}
+
+h3#irc+div.panel.pad ul, h3#general+div.panel.pad ul {
+    list-style: none;}
+
+h3#irc+div.panel.pad ul li, h3#general+div.panel.pad ul li {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;}
+
+h3#irc+div.panel.pad ul li:last-child, h3#general+div.panel.pad ul li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;}
+
+div.permission_container {
+    float: left;
+    width: 32%;}
+
+div.permission_container:nth-child(2) {
+    padding: 0px 2%;}
+
+div.permission_container>table {
+    width: 100%;}
+
+#debug_database pre, #debug_report pre {
+    white-space: pre-wrap;}
+
+
+/* ========================================================================
+   Lightbox
+   ======================================================================== */
+
+
+.curtain {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 199;}
+
+.lightbox {
+    background-color: rgba(0, 0, 0, .4);
+    min-height: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 200;}
+
+.lightbox img {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+    display: block;
+    margin: 100px auto;}
+
+
+/* ========================================================================
+   Polls & graphs
+   ======================================================================== */
+
+
+#threadpoll p {
+    margin-bottom: 20px;
+    font-size: 16px;}
+
+li.graph {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background: #f4f4f4;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;}
+
+li.graph .left_poll {
+    }
+
+li.graph .center_poll {
+    display: block;
+    height: 8px !important;
+    background: #666;
+    border: 1px solid #5a5a5a;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-box-shadow: inset 0 -2px 3px #555;
+    -moz-box-shadow: inset 0 -2px 3px #555;}
+
+#index .graph .center_poll {
+    margin-top: 0;}
+
+li.graph .right_poll {
+    }
+
+
+/* ========================================================================
+   Tooltips (qtip)
+   ======================================================================== */
+
+
+.qtip, .qtip {
+    position: absolute;
+    left: -28000px;
+    top: -28000px;
+    display: none;
+    max-width: 280px;
+    min-width: 50px;
+    font-size: 10.5px;
+    line-height: 12px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.qtip-content {
+    position: relative;
+    padding: 5px 9px;
+    overflow: hidden;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.qtip-shadow {
+    -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.qtip:not(.ie9haxors) div.qtip-content, .qtip:not(.ie9haxors) div.qtip-titlebar {
+    filter: none;
+    -ms-filter: none;
+}
+
+.qtip .qtip-tip {
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.qtip .qtip-tip, .qtip .qtip-tip * {
+    position: absolute;
+    color: #123456;
+    background: transparent;
+    border: 0 dashed transparent;
+}
+
+.qtip .qtip-tip canvas {
+    top: 0;
+    left: 0;
+}
+
+.qtip-ptp {
+    background: rgba(0, 0, 0, 0.92);
+    line-height: normal !important;
+    max-width: none !important;
+    color: #fff;
+    border-color: gray;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 2px !important;
+}
+
+
+/* ========================================================================
+   Responsive layout (media queries) — kept last so they win the cascade
+   ======================================================================== */
+
+
 @media (max-width: 959px) {
     body {
         padding-top: 20px;}
@@ -1998,7 +2007,6 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
         border-bottom: none;}
 }
 
-/* ---- Stack the two content columns ---- */
 @media (max-width: 768px) {
     #content .main-column,
     #content .sidebar {
@@ -2018,7 +2026,6 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
         -webkit-overflow-scrolling: touch;}
 }
 
-/* ---- Cover/Huge poster grids: step down 5 -> 4 -> 3 -> 2 ---- */
 @media (max-width: 800px) {
     .cover-movie-list__movie {
         width: calc((100% - 36px) / 4);}    /* 4 across (3 gaps of 12px) */
@@ -2045,4 +2052,3 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
     .huge-movie-list__movie__details {
         width: 100%;}
 }
-/*######### END RESPONSIVE LAYOUT #####################################*/
