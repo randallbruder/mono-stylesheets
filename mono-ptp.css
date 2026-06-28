@@ -1252,10 +1252,8 @@ div:not(.linkbox) > [id^="bookmarklink"] {
 
 
 /*######### TOP 10 #####################################*/
-#top10 #content .cover-movie-list__movie {
-    float: left;
-    margin-right: 1%;
-    width: 19%;}
+/* Layout handled by the shared cover-movie-list flex grid (end of file).
+   The old float/19%-width rule fought that grid's gap and produced 4 columns. */
 /*######### END TOP 10 #####################################*/
 
 
