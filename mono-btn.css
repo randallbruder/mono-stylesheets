@@ -81,14 +81,18 @@ tr.forum_group_header {
 
 
 #wrapper {
-	width: 960px;
+	width: 100%;
+	max-width: 960px;
 	margin: 0 auto;
+	box-sizing: border-box;
 }
 
 
 #header {
-	width: 960px;
+	width: 100%;
+	max-width: 960px;
 	margin: 0 auto;
+	box-sizing: border-box;
 }
 
 
@@ -109,7 +113,8 @@ tr.forum_group_header {
 /*########################################################*/
 #footer {
 	clear: both;
-	width: 960px;
+	width: 100%;
+	max-width: 960px;
 	margin: 0 auto;
 	margin-top: 20px;
 	padding-top: 20px;
@@ -364,9 +369,11 @@ tr.forum_group_header {
 
 
 h1.hidden {
-	width: 940px;
+	width: 100%;
+	max-width: 940px;
 	margin: 0 auto;
 	padding: 15px 10px;
+	box-sizing: border-box;
 	display: block;
 	text-transform: lowercase;
 	color: #2a2a2a;
@@ -762,7 +769,7 @@ input[name="search"],
 .thin #slider .scroll {
 	height: auto !important;
 	overflow: visible;
-	width: 960px !important;
+	width: 100% !important;
 	max-width: 960px !important;
 }
 
@@ -870,7 +877,8 @@ input[name="search"],
 /*######### CONTENT ######################################*/
 /*########################################################*/
 #content {
-	min-width: 960px;
+	width: 100%;
+	max-width: 960px;
 	margin: 0 auto !important;
 	position: relative;
 	overflow: visible;
@@ -885,13 +893,13 @@ input[name="search"],
 
 #content .main_column {
 	float: left;
-	width: 695px;
+	width: 72.4%;
 }
 
 
 #content .sidebar {
 	float: right;
-	width: 245px;
+	width: 25.5%;
 }
 
 
@@ -1315,22 +1323,26 @@ table.staff td.nobr:last-child {
 
 
 .main_column .box {
-	width: 675px;
+	width: auto;
+	box-sizing: border-box;
 }
 
 
 .main_column .head {
-	width: 679px;
+	width: auto;
+	box-sizing: border-box;
 }
 
 
 .sidebar .box {
-	width: 220px;
+	width: auto;
+	box-sizing: border-box;
 }
 
 
 body:not(#torrents) .sidebar .head {
-	width: 224px;
+	width: auto;
+	box-sizing: border-box;
 }
 
 body#torrent .sidebar .head {}
@@ -1480,12 +1492,13 @@ blockquote {
 
 .thin {
 	position: relative;
-	width: 960px;
+	width: 100%;
+	max-width: 960px;
 }
 
 
 #SnatchData {
-	min-width: 960px;
+	max-width: 960px;
 }
 
 .thin>table {
@@ -2060,11 +2073,13 @@ table.torrent_table blockquote>ul {
 }
 
 .main_column .box {
-	width: 673px;
+	width: auto;
+	box-sizing: border-box;
 }
 
 .main_column .head {
-	width: 677px;
+	width: auto;
+	box-sizing: border-box;
 }
 
 #content>div>div.main_column>div.box.center>div.body>img {
@@ -2074,4 +2089,139 @@ table.torrent_table blockquote>ul {
 
 .tor_highlight_seed {
 	color: #0f0 !important;
+}
+
+
+/* ========================================================================
+   Responsive layout (media queries) — kept last so they win the cascade.
+   <960: linearize the absolutely-positioned header.  <768: stack columns
+   and let wide tables scroll.  (Mirrors the mono-ptp.css treatment.)
+   ======================================================================== */
+
+@media (max-width: 959px) {
+	body {
+		padding: 20px 15px 40px;
+	}
+
+	/* header stops being a fixed 60px canvas for absolutely-placed pieces */
+	#header {
+		position: static;
+		height: auto;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	/* pull every absolutely-placed / floated header piece into normal flow */
+	#logo a,
+	#userinfo_username,
+	#userinfo_stats,
+	#header #menu,
+	#alerts,
+	#donation {
+		position: static;
+		top: auto;
+		right: auto;
+		left: auto;
+		bottom: auto;
+		float: none;
+	}
+
+	#alerts,
+	#donation {
+		display: none;
+	}
+
+	/* logo -> centered, intrinsic size */
+	#logo {
+		text-align: center;
+	}
+
+	#logo a {
+		display: inline-block;
+		margin: 0 auto;
+	}
+
+	/* username row -> centered, spanning the width */
+	#userinfo_username {
+		width: 100%;
+		box-sizing: border-box;
+		text-align: center;
+		padding: 8px 0;
+		background: none !important;
+		border-radius: 0;
+	}
+
+	#userinfo_username li {
+		display: inline-block;
+		margin: 0 5px;
+	}
+
+	/* stats box -> let items flow instead of the fixed 237px absolute grid */
+	#userinfo_stats {
+		width: auto;
+		max-width: 100%;
+		height: auto;
+		margin: 10px auto 0;
+		padding: 6px 14px;
+		text-align: center;
+	}
+
+	#userinfo_stats li,
+	#userinfo_stats li:first-child,
+	#userinfo_stats li:last-child {
+		position: static;
+		display: inline-block !important;
+		width: auto;
+		top: auto;
+		left: auto;
+		margin: 0 7px;
+		border: none;
+		padding-top: 0;
+	}
+
+	/* main nav -> centered, wrapping bar */
+	#header #menu {
+		margin: 8px 0 0;
+	}
+
+	#header #menu ul#menu1 {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	/* search bars -> full width, wrapping */
+	#searchbars {
+		float: none;
+		width: 100%;
+		box-sizing: border-box;
+		margin-top: 12px;
+		text-align: center;
+	}
+}
+
+@media (max-width: 768px) {
+
+	/* two-column pages collapse to a single stacked column */
+	#content .main_column,
+	#content .sidebar {
+		float: none;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	#content .sidebar {
+		margin-top: 20px;
+	}
+
+	/* let wide tables scroll rather than widen the page
+	   (:not(.hidden) so we don't override the .hidden display:none utility) */
+	.torrent_table:not(.hidden),
+	.forum_index:not(.hidden),
+	table.border:not(.hidden),
+	#userhistory table:not(.hidden) {
+		display: block;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
 }
