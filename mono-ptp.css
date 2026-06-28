@@ -1669,6 +1669,10 @@ div.pad ul, div.body ul, table.torrent_table blockquote>ul {
     flex-wrap: wrap;
     gap: 12px;}
 
+/* Drop the legacy float-clearing divs that otherwise become stray flex items */
+.cover-movie-list > div:not(.cover-movie-list__movie) {
+    display: none;}
+
 /* 5 posters across the 695px main column */
 .cover-movie-list__movie {
     width: calc((100% - 48px) / 5);
