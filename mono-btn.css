@@ -747,6 +747,11 @@ input[name="search"],
 	display: block;
 }
 
+#header #menu ul#menu1>li:last-child>ul {
+	/* last item sits at the right edge, so anchor its dropdown right to keep it inside the frame */
+	right: 0;
+}
+
 
 
 /*########################################################*/
