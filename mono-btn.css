@@ -546,17 +546,23 @@ input[type="password"]:focus {
 }
 
 h1.hidden {
-	width: 100%;
-	max-width: 940px;
 	margin: 0 auto;
 	padding: 15px 10px;
 	box-sizing: border-box;
-	display: block;
+	display: inline-block;
 	text-transform: lowercase;
+	text-align: center;
 	color: #2a2a2a;
 	font-family: Helvetica;
 	font-size: 22pt;
 	/*border-bottom: 2px solid #dfdfdf;*/
+}
+
+@media (max-width: 959px) {
+	h1.hidden {
+		width: 100%;
+		text-align: center;
+	}
 }
 
 #header {
@@ -1987,6 +1993,7 @@ li.graph .center_poll {
 	/* logo -> centered, intrinsic size */
 	#logo {
 		text-align: center;
+		display: none;
 	}
 
 	#logo a {
