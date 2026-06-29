@@ -730,7 +730,6 @@ input[name="search"],
 	display: block;
 	font-size: 9px/14pt;
 	text-decoration: none;
-	width: 100%;
 }
 
 #header #menu ul#menu1>li>a:hover {
@@ -752,7 +751,7 @@ input[name="search"],
 
 #header #menu ul#menu1 li a {
 	background: transparent;
-	padding: 1px 15px 2px;
+	padding: 1px 12px 2px;
 }
 
 #header #menu ul#menu1 li a:hover {
@@ -799,6 +798,7 @@ input[name="search"],
 #header #menu ul#menu1>li:last-child>ul {
 	/* last item sits at the right edge, so anchor its dropdown right to keep it inside the frame */
 	right: 0;
+	left: auto;
 }
 
 #artistcomplete li {
