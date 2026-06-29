@@ -144,6 +144,20 @@ tr {
 	position: relative;
 }
 
+/* Show banner: scale down on narrow screens instead of overflowing.
+   The banner's wrapper div has inline height/max-width; relax those so
+   the image can shrink while keeping its aspect ratio. */
+#content .thin center > div {
+	height: auto !important;
+	max-height: none !important;
+	max-width: 100% !important;
+}
+
+#banner {
+	max-width: 100%;
+	height: auto;
+}
+
 #content .main_column {
 	float: left;
 	width: 72.4%;
