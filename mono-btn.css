@@ -2158,6 +2158,22 @@ li.graph .center_poll {
 		margin-top: 20px;
 	}
 
+	/* The sidebar precedes the main column in source order, so stacked it would
+	   land on top. Flex the column wrapper and order the main column first, the
+	   sidebar after. Banner/linkbox keep the default order:0 and stay on top. */
+	#content .thin {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#content .thin .main_column {
+		order: 1;
+	}
+
+	#content .thin .sidebar {
+		order: 2;
+	}
+
 	/* user profile: avatar column stacks above the slider column */
 	#user #content .leftbar,
 	#user #content .midbar {
