@@ -713,6 +713,8 @@ textarea {
 input[name="search"],
 .sidebar textarea {
 	width: 202px;
+	max-width: 100%;
+	box-sizing: border-box;
 }
 
 #searchbars {
@@ -1854,6 +1856,23 @@ blockquote {
 #content .sidebar .box img {
 	max-width: 100%;
 	height: auto;
+}
+
+/* The sidebar is fluid (25.5% of the frame) and gets narrow at tablet widths,
+   where fixed-width inputs, selects, layout tables and long unbreakable URLs
+   in its boxes punch out and overscroll the page horizontally. Keep every box
+   child contained within its column. */
+#content .sidebar .box {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+
+#content .sidebar .box table,
+#content .sidebar .box select,
+#content .sidebar .box input,
+#content .sidebar .box textarea {
+	max-width: 100%;
+	box-sizing: border-box;
 }
 
 form[action="user.php"] table textarea,
