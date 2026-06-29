@@ -2121,26 +2121,62 @@ li.graph .center_poll {
 		text-align: center;
 	}
 
-	/* User profile coda-slider -> drop the horizontal slider and stack all
-	   panels vertically. The slider's JS-set pixel widths can't fit a narrow
-	   viewport, so panels would otherwise be clipped by .scroll's overflow.
-	   The nav tabs (Profile/Info/...) remain as in-page anchor links. */
+	/* User profile: the avatar column (.leftbar) and slider column (.midbar)
+	   are a fixed-width two-column layout (.midbar/#slider carry a hard ~792px
+	   width from the live site CSS). That fixed width overflows once the frame
+	   drops below ~960px, so stack the two columns and force the whole slider
+	   chain fluid. Done at 959 (not 768) because the overflow starts as soon as
+	   the 960 frame shrinks. */
+	#user #content .leftbar,
+	#user #content .midbar {
+		float: none !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 0 20px !important;
+		box-sizing: border-box;
+	}
+
+	#user #content .leftbar {
+		text-align: center;
+	}
+
+	/* Drop the horizontal slider and stack all panels vertically. The slider's
+	   JS-set pixel widths can't fit a narrow viewport, so panels would otherwise
+	   be clipped by .scroll's overflow. The nav tabs (Profile/Info/...) remain
+	   as in-page anchor links. */
+	#user #slider,
+	#user #slider .box.usermenu,
+	#user #slider .scroll,
+	#user #slider .scrollContainer,
+	#user #slider .panel {
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box;
+	}
+
 	#user #slider .scroll {
 		overflow: visible !important;
 		height: auto !important;
 	}
 
 	#user #slider .scrollContainer {
-		width: 100% !important;
 		height: auto !important;
 	}
 
 	#user #slider .panel {
 		float: none !important;
-		width: 100% !important;
 		height: auto !important;
 		position: static !important;
 		margin-bottom: 20px;
+	}
+
+	/* Wide tables inside the stacked panels (badge grid, wall-post images, etc.)
+	   scroll inside their box rather than widening the column. :not(.hidden)
+	   keeps the display:none utility intact. */
+	#user .midbar table:not(.hidden) {
+		display: block;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
 	}
 }
 
@@ -2174,25 +2210,12 @@ li.graph .center_poll {
 		order: 2;
 	}
 
-	/* user profile: avatar column stacks above the slider column */
-	#user #content .leftbar,
-	#user #content .midbar {
-		float: none !important;
-		width: 100% !important;
-		margin: 0 0 20px !important;
-	}
-
-	#user #content .leftbar {
-		text-align: center;
-	}
-
 	/* let wide tables scroll rather than widen the page
 	   (:not(.hidden) so we don't override the .hidden display:none utility) */
 	.torrent_table:not(.hidden),
 	.forum_index:not(.hidden),
 	table.border:not(.hidden),
-	#userhistory table:not(.hidden),
-	#user .panel .pad>table:not(.hidden) {
+	#userhistory table:not(.hidden) {
 		display: block;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
