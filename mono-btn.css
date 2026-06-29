@@ -1992,13 +1992,16 @@ li.graph .center_poll {
 
 	/* logo -> centered, intrinsic size */
 	#logo {
-		text-align: center;
-		display: none;
+		position: absolute;
+		top: 27px;
+		left: 15px;
+		right: 15px;
 	}
 
 	#logo a {
-		display: inline-block;
+		display: block;
 		margin: 0 auto;
+		width: 100%;
 	}
 
 	/* username row -> centered, spanning the width */
