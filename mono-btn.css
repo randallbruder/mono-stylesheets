@@ -158,6 +158,20 @@ tr {
 	height: auto;
 }
 
+/* Trailer play button: overlay it centered on the banner so it follows
+   the banner as it scales. Taking #playbutton out of flow collapses the
+   <center> box down to just the banner, so 50%/50% centers over it. */
+#content .thin center {
+	position: relative;
+}
+
+#playbutton {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 #content .main_column {
 	float: left;
 	width: 72.4%;
