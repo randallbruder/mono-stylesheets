@@ -147,7 +147,7 @@ tr {
 /* Show banner: scale down on narrow screens instead of overflowing.
    The banner's wrapper div has inline height/max-width; relax those so
    the image can shrink while keeping its aspect ratio. */
-#content .thin center > div {
+#content .thin center>div {
 	height: auto !important;
 	max-height: none !important;
 	max-width: 100% !important;
@@ -449,7 +449,6 @@ input[type="password"]:focus {
 
 #header ul li {
 	display: inline;
-	margin-right: 10px;
 }
 
 #header ul li:last-child {
@@ -733,7 +732,9 @@ input[name="search"],
 
 #searchbars ul,
 #searchbars form {
-	display: inline;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
 }
 
 #header #menu {
@@ -2110,7 +2111,7 @@ li.graph .center_poll {
 	.forum_index:not(.hidden),
 	table.border:not(.hidden),
 	#userhistory table:not(.hidden),
-	#user .panel .pad > table:not(.hidden) {
+	#user .panel .pad>table:not(.hidden) {
 		display: block;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
