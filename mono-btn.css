@@ -735,6 +735,7 @@ input[name="search"],
 #searchbars ul,
 #searchbars form {
 	display: flex;
+	justify-content: center;
 	flex-wrap: wrap;
 	gap: 1em;
 }
