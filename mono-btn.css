@@ -1831,6 +1831,31 @@ blockquote {
 	width: 220px !important;
 }
 
+/* Series page: the #summary tabs widget (jQuery-UI) is pinned to a fixed
+   50em / 44em width by BTN's own inline <head> <style>. That punches out of
+   the main column and overscrolls the page horizontally on narrow widths.
+   Make it fluid so it can never exceed its column (no !important on the site's
+   rule, so ours wins). */
+#summary .ui-tabs-vertical {
+	width: auto !important;
+	box-sizing: border-box;
+}
+
+#summary .ui-tabs-vertical .ui-tabs-panel {
+	float: none !important;
+	width: auto !important;
+	overflow: hidden; /* BFC: sits beside the floated nav and fills the rest */
+	box-sizing: border-box;
+}
+
+/* The series poster carries a fixed width="220" attribute that overflows the
+   sidebar box once the column is narrower than that. Cap sidebar imagery to
+   its container. */
+#content .sidebar .box img {
+	max-width: 100%;
+	height: auto;
+}
+
 form[action="user.php"] table textarea,
 form[action="user.php"] table input[type="text"] {
 	-webkit-box-sizing: border-box;
