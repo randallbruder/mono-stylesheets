@@ -1,12 +1,5 @@
 /*
     Mono — BroadcastTheNet (BTN)
-    Based on the Mono What.cd stylesheet by Callum Jefferies (callumj),
-    ported to BTN by avocado, with later additions.
-    All icons Copyright (c) Callum Jefferies 2011
-
-    Reorganized into logical sections; no styles changed.
-    The cascade is order-sensitive, so within each section rules keep their
-    original relative order, and all @media queries stay together at the end.
 */
 
 
