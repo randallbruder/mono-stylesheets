@@ -1,19 +1,29 @@
 /*
-Mono What.cd Stylesheet
-Ported to BTN by avocado
+    Mono — BroadcastTheNet (BTN)
+    Based on the Mono What.cd stylesheet by Callum Jefferies (callumj),
+    ported to BTN by avocado, with later additions.
+    All icons Copyright (c) Callum Jefferies 2011
 
-
-Author:  Callum Jefferies (callumj)
-Contact: callum.jefferies@gmail.com
-Date:	23/01/2011
-
-All icons Copyright (c) Callum Jefferies 2011
+    Reorganized into logical sections; no styles changed.
+    The cascade is order-sensitive, so within each section rules keep their
+    original relative order, and all @media queries stay together at the end.
 */
+
+
+/* ========================================================================
+   Reset & box model
+   ======================================================================== */
+
 
 * {
 	margin: 0;
 	padding: 0;
 }
+
+
+/* ========================================================================
+   Base elements & typography
+   ======================================================================== */
 
 
 body {
@@ -22,38 +32,23 @@ body {
 	font: 9pt/14pt 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
-
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 
 a {
 	text-decoration: none;
 	color: #3b7ab0;
 }
 
-
 a img {
 	border: none;
 }
 
-
 a:hover {
 	color: #448cc8;
 }
-
-
-h1,
-h2,
-h3,
-tr.forum_group_header {
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight: bold;
-	color: #444 !important;
-}
-
 
 h2 {
 	margin-bottom: 20px;
@@ -61,23 +56,37 @@ h2 {
 	line-height: 16pt;
 }
 
+a,
+textarea,
+input {
+	outline: none;
+}
 
-h3,
-tr.forum_group_header {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	font-size: 14pt;
-	line-height: 14pt;
+form textarea,
+form input {}
+
+form textarea {
+	width: 95%;
+}
+
+.head a {
+	color: #3e3e3e;
+}
+
+td {
+	border: 1px solid #BBB;
+	padding: 5px;
+	text-align: left;
+}
+
+tr {
+	border: 1px solid #BBB;
 }
 
 
-#logo a {
-	position: absolute;
-	top: -40px;
-	left: 6px;
-	width: 226px;
-	height: 31px;
-}
+/* ========================================================================
+   Layout frame: wrapper, content columns, footer
+   ======================================================================== */
 
 
 #wrapper {
@@ -87,30 +96,6 @@ tr.forum_group_header {
 	box-sizing: border-box;
 }
 
-
-#header {
-	width: 100%;
-	max-width: 960px;
-	margin: 0 auto;
-	box-sizing: border-box;
-}
-
-
-#header ul li {
-	display: inline;
-	margin-right: 10px;
-}
-
-
-#header ul li:last-child {
-	margin-right: 0;
-}
-
-
-
-/*########################################################*/
-/*######### FOOTER #######################################*/
-/*########################################################*/
 #footer {
 	clear: both;
 	width: 100%;
@@ -123,7 +108,6 @@ tr.forum_group_header {
 	color: #666;
 }
 
-
 #footer p {
 	display: inline;
 	margin: 0px;
@@ -131,16 +115,122 @@ tr.forum_group_header {
 	word-wrap: break-word;
 }
 
-
 #footer p:after {
 	content: ".";
 }
+
+.sidebar ol {
+	margin-left: 20px;
+}
+
+#content,
+.thin {
+	overflow: visible;
+	clear: both;
+}
+
+.thin #slider,
+.thin #slider .panel,
+.thin #slider .scroll {
+	height: auto !important;
+	overflow: visible;
+	width: 100% !important;
+	max-width: 960px !important;
+}
+
+#content {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto !important;
+	position: relative;
+	overflow: visible;
+}
+
+#content .main_column,
+#content .sidebar {
+	position: relative;
+}
+
+#content .main_column {
+	float: left;
+	width: 72.4%;
+}
+
+#content .sidebar {
+	float: right;
+	width: 25.5%;
+}
+
+.main_column .box {
+	width: auto;
+	box-sizing: border-box;
+}
+
+.main_column .head {
+	width: auto;
+	box-sizing: border-box;
+}
+
+.sidebar .box {
+	width: auto;
+	box-sizing: border-box;
+}
+
+.sidebar .box ul li {
+	list-style: none;
+}
+
+.forum_post ul,
+.forum_post ol {
+	margin-left: 25px;
+}
+
+.thin {
+	position: relative;
+	width: 100%;
+	max-width: 960px;
+}
+
+div.thin>h2+div,
+div.thin>h2+.linkbox+div {
+	margin-bottom: 20px;
+}
+
+div.thin>h2+.linkbox+div table {
+	border: none;
+	background: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+div.thin>h2+.linkbox+div td {
+	padding-left: 10px !important;
+}
+
+.main_column .box {
+	width: auto;
+	box-sizing: border-box;
+}
+
+.main_column .head {
+	width: auto;
+	box-sizing: border-box;
+}
+
+#content>div>div.main_column>div.box.center>div.body>img {
+	width: 100% !important;
+	height: auto !important;
+}
+
+
+/* ========================================================================
+   Helpers: utilities, colour & size classes
+   ======================================================================== */
 
 
 .hidden {
 	display: none;
 }
-
 
 .r00 {
 	color: #F00;
@@ -198,7 +288,6 @@ tr.forum_group_header {
 	color: #418B00;
 }
 
-
 .size1 {
 	font-size: 0.75em
 }
@@ -253,11 +342,98 @@ tr.forum_group_header {
 	padding: .25em 0;
 }
 
+ul.nobullet {
+	list-style-type: none;
 
-#discog_table.torrent_table .colhead_dark td:nth-child(4) {
-	width: 15%;
 }
 
+#debug_database pre,
+#debug_report pre {
+	white-space: pre-wrap;
+}
+
+.pad.hide {
+	display: none;
+}
+
+
+/* ========================================================================
+   Buttons & form controls
+   ======================================================================== */
+
+
+button+button,
+input[type="button"]+input[type="button"],
+input[type="submit"]+input[type="submit"],
+input[type="button"]+input[type="submit"],
+input[type="submit"]+input[type="button"],
+{
+margin-left: 2px;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+#userinfo_username .brackets a:active {
+	background: -webkit-gradient(linear, left 40%, left 120%, from(#575757), to(#5f5f5f));
+	background: -moz-linear-gradient(center bottom, #5f5f5f, #575757);
+}
+
+input[type="submit"]:active {
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[name="search"]:focus,
+input[type="password"]:focus {
+	color: #444 !important;
+	-webkit-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);
+	-moz-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);
+}
+
+.sidebar select,
+.sidebar input {
+	margin-bottom: 10px;
+}
+
+
+/* ========================================================================
+   Site header: logo, user-info bar, stats, search, main menu, donation
+   ======================================================================== */
+
+
+#logo a {
+	position: absolute;
+	top: -40px;
+	left: 6px;
+	width: 226px;
+	height: 31px;
+}
+
+#header {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+#header ul li {
+	display: inline;
+	margin-right: 10px;
+}
+
+#header ul li:last-child {
+	margin-right: 0;
+}
 
 #userinfo_username {
 	position: absolute;
@@ -271,18 +447,15 @@ tr.forum_group_header {
 	background: #ddd !important;
 }
 
-
 #alerts {
 	position: absolute;
 	bottom: 110px;
 }
 
-
 #searchbars,
 #userinfo_stats {
 	/*margin-top: 55px;*/
 }
-
 
 #userinfo_major,
 #userinfo_minor {
@@ -291,7 +464,6 @@ tr.forum_group_header {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 }
-
 
 #userinfo_minor {
 	display: none;
@@ -305,7 +477,6 @@ tr.forum_group_header {
 	background: #f4f4f4;
 }
 
-
 #userinfo_major {
 	display: none;
 	width: 245px;
@@ -314,18 +485,15 @@ tr.forum_group_header {
 	text-align: center;
 }
 
-
 #userinfo_major a,
 #userinfo_minor a {
 	color: #777;
 }
 
-
 #userinfo_major a:hover,
 #userinfo_minor a:hover {
 	color: #444;
 }
-
 
 #userinfo_major a {
 	font-size: 13px;
@@ -336,8 +504,6 @@ tr.forum_group_header {
 	display: none;
 }
 
-
-/*######### DONATION #########*/
 #header #donation {
 	display: none;
 	float: right;
@@ -345,12 +511,10 @@ tr.forum_group_header {
 	position: relative !important;
 }
 
-
 #header #donation #DonBk,
 #header #donation #DonBr {
 	display: none;
 }
-
 
 #header #donation #DonInfo {
 	position: relative !important;
@@ -358,15 +522,12 @@ tr.forum_group_header {
 	white-space: nowrap;
 }
 
-
 #header #donation #DonInfo a {}
-
 
 #searchbars ul li:nth-child(4),
 #searchbars ul li:nth-child(5) {
 	display: none;
 }
-
 
 h1.hidden {
 	width: 100%;
@@ -382,13 +543,11 @@ h1.hidden {
 	/*border-bottom: 2px solid #dfdfdf;*/
 }
 
-
 #header {
 	position: relative;
 	height: 60px;
 	margin-bottom: 20px;
 }
-
 
 #userinfo_stats {
 	position: relative;
@@ -401,7 +560,6 @@ h1.hidden {
 	background: #5e5e5e;
 	color: #fff;
 }
-
 
 #userinfo_stats li {
 	border-top: 1px solid #777;
@@ -433,37 +591,26 @@ h1.hidden {
 	left: 128px;
 }
 
-
 #userinfo_stats span {
 	color: #fff !important;
 }
-
 
 #userinfo_stats li:nth-child(even) {
 	border: none !important;
 }
 
-
 #userinfo_stats {
 	font-weight: bold;
 }
-
 
 #userinfo_stats .stat,
 #userinfo_stats a {
 	font-weight: normal;
 }
 
-
 #userinfo_stats a {
 	color: #f4f4f4;
 }
-
-
-#discog_table.torrent_table .colhead_dark td:first-child {
-	width: 50px !important;
-}
-
 
 button,
 input[type="button"],
@@ -485,43 +632,14 @@ input[type="submit"],
 	border: 1px solid #4d4d4d;
 }
 
-button+button,
-input[type="button"]+input[type="button"],
-input[type="submit"]+input[type="submit"],
-input[type="button"]+input[type="submit"],
-input[type="submit"]+input[type="button"],
-{
-margin-left: 2px;
-}
-
-
-button,
-input[type="button"],
-input[type="submit"] {
-	margin-top: 3px;
-	margin-bottom: 3px;
-}
-
-
-button:active,
-input[type="button"]:active,
-input[type="submit"]:active,
-#userinfo_username .brackets a:active {
-	background: -webkit-gradient(linear, left 40%, left 120%, from(#575757), to(#5f5f5f));
-	background: -moz-linear-gradient(center bottom, #5f5f5f, #575757);
-}
-
-
 #userinfo_username a {
 	font-size: 11pt;
 	color: #555;
 }
 
-
 #userinfo_username .brackets {
 	margin: -2px;
 }
-
 
 #userinfo_username .brackets a {
 	-webkit-border-top-right-radius: 0;
@@ -529,7 +647,6 @@ input[type="submit"]:active,
 	-webkit-border-bottom-right-radius: 0;
 	-moz-border-radius-bottomright: 0;
 }
-
 
 #userinfo_username .brackets:last-child a {
 	border-left: none;
@@ -542,38 +659,6 @@ input[type="submit"]:active,
 	-webkit-border-bottom-left-radius: 0;
 	-moz-border-radius-bottomleft: 0;
 }
-
-
-input[type="submit"]:active {
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.02), inset -1px 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-
-a,
-textarea,
-input {
-	outline: none;
-}
-
-
-form textarea,
-form input {}
-
-form textarea {
-	width: 95%;
-}
-
-
-form#quickpostform textarea {
-	height: 160px;
-	margin: 0 auto;
-}
-
-
-/*div.thin br+h3 {
-	margin: 0 0 15px 15px;}*/
-
 
 textarea,
 input[type="text"],
@@ -593,17 +678,6 @@ input[type="password"],
 	-webkit-background-clip: padding-box;
 }
 
-
-textarea:focus,
-input[type="text"]:focus,
-input[name="search"]:focus,
-input[type="password"]:focus {
-	color: #444 !important;
-	-webkit-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);
-	-moz-box-shadow: inset -1px 1px 3px rgba(0, 0, 0, 0.15), 0 0 5px rgba(0, 140, 180, 0.5);
-}
-
-
 textarea {
 	background: #fff !important;
 	border: 1px solid #adadad !important;
@@ -613,31 +687,11 @@ textarea {
 	font-size: 10pt;
 }
 
-
 .sidebar input[type="text"],
 input[name="search"],
 .sidebar textarea {
 	width: 202px;
 }
-
-
-.sidebar select,
-.sidebar input {
-	margin-bottom: 10px;
-}
-
-
-.sidebar ol {
-	margin-left: 20px;
-}
-
-
-#content,
-.thin {
-	overflow: visible;
-	clear: both;
-}
-
 
 #searchbars {
 	float: left;
@@ -649,7 +703,6 @@ input[name="search"],
 	margin-top: -18px;
 }
 
-
 #searchbars input {
 	width: 144px;
 	padding: 5px;
@@ -657,12 +710,10 @@ input[name="search"],
 	color: #555;
 }
 
-
 #searchbars ul,
 #searchbars form {
 	display: inline;
 }
-
 
 #header #menu {
 	clear: both;
@@ -739,8 +790,6 @@ input[name="search"],
 	padding-top: 10px;
 }
 
-/* :first-child and :last-child don't work on text HTML nodes (like anchors). so instead, the psuedo selector will choose the last list them, which will then transcend to the last anchor */
-
 #header #menu ul#menu1 li ul li:last-child a {
 	padding-bottom: 10px;
 }
@@ -759,30 +808,39 @@ input[name="search"],
 	right: 0;
 }
 
-
-
-/*########################################################*/
-/*######### USER EDIT ####################################*/
-/*########################################################*/
-.thin #slider,
-.thin #slider .panel,
-.thin #slider .scroll {
-	height: auto !important;
-	overflow: visible;
-	width: 100% !important;
-	max-width: 960px !important;
+#artistcomplete li {
+	display: block !important;
+	-webkit-box-sizing: border-box;
+	padding: 5px 10px;
 }
+
+.alertbar {
+	color: #fff;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-o-border-radius: 6px;
+	border-radius: 6px;
+	padding: 4px 7px;
+}
+
+.alertbar[style] {
+	background-color: #5e5e5e !important;
+	border: 0 !important;
+}
+
+
+/* ========================================================================
+   Panels, navigation, headings & shared table chrome
+   ======================================================================== */
 
 
 .panel table {
 	border-collapse: collapse;
 }
 
-
 .panel .label {
 	width: 12%;
 }
-
 
 .navigation:not(.box) {
 	/* header */
@@ -791,32 +849,210 @@ input[name="search"],
 	margin-bottom: 10px;
 }
 
-
 .navigation li a {
 	color: #565656 !important;
 	font-weight: normal !important;
 	text-decoration: none !important;
 }
 
-/* these importants are really annoying */
-
-
 .navigation li a:hover {
 	background-color: transparent !important;
 	text-decoration: underline !important;
 }
-
 
 .navigation li a.selected {
 	background-color: transparent !important;
 	font-weight: bold;
 }
 
+.panel .info.box table.center tr,
+.panel .info.box table.center tr td {
+	border-color: #bbb;
+}
+
+.panel .info.box table.center tr:last-child,
+.panel .info.box table.center tr:last-child td {
+	border-bottom-width: 0px;
+}
+
+.panel .info.box table.center tr td {
+	padding: 5px 20px;
+	white-space: nowrap;
+}
+
+.box.pad {
+	padding: 0 !important;
+	background: transparent;
+	border: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+.box.pad table {
+	background: #fff;
+}
+
+.head,
+.colhead td,
+.recent .colhead td,
+.colhead_dark td,
+.colhead th,
+.colhead_dark th,
+.navigation:not(.box) {
+	margin: -11px;
+	margin-bottom: 10px;
+	padding: 8px !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc)) !important;
+	background: -moz-linear-gradient(center bottom, #ccc, #ddd) !important;
+	border: 1px solid #aeaeae !important;
+	border-bottom-color: #bbb !important;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+	font: bold 10pt Helvetica, Arial, sans-serif !important;
+	color: #575757 !important;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+table[width="100%"] td,
+.torrent_table td,
+#requests td,
+#collages td,
+.forum_index td,
+table.border td,
+.linkbox+table td,
+form#messageform table td,
+form[action="user.php"] table td,
+table.staff td.nobr,
+#inbox form table td {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	white-space: normal;
+}
+
+table[width="100%"] .colhead td,
+table[width="100%"] .colhead_dark td,
+.torrent_table .colhead_dark td,
+#requests .colhead_dark td,
+#collages .colhead td,
+.forum_index .colhead td,
+#torrent_table .colhead td,
+table.border .colhead td,
+.linkbox+table .colhead td,
+form#messageform .colhead table td,
+#inbox form table .colhead td {
+	border: 1px solid #aeaeae !important;
+}
+
+table.staff td.nobr {
+	border-right: 1px solid #ccc !important;
+}
+
+table.staff td.nobr:last-child {
+	border-right: 1px solid #aeaeae !important;
+}
+
+.recent td {
+	padding: 10px;
+	background: #fff;
+	border: 1px solid #aeaeae;
+	border-right: 1px solid #ccc;
+	border-left: none;
+	border-top: none;
+}
+
+.linkbox {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+div.thin>h2+div table td,
+div.thin>h2+.linkbox+div table td,
+.filter_torrents table td {
+	padding: 10px 0;
+	border: none !important;
+	border-bottom: 1px solid #d1d1d1 !important;
+}
+
+h3#irc+div.box.pad,
+h3#general+div.box.pad {
+	padding: 30px !important;
+	background: #f8f8f8;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+h3#irc+div.box.pad ul,
+h3#general+div.box.pad ul {
+	list-style: none;
+}
+
+h3#irc+div.box.pad ul li,
+h3#general+div.box.pad ul li {
+	margin-bottom: 8px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #ddd;
+}
+
+h3#irc+div.box.pad ul li:last-child,
+h3#general+div.box.pad ul li:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: none;
+}
+
+table.border[width="100%"] {
+	margin-bottom: 20px;
+}
+
+table.border[width="100%"] tbody tr:nth-child(5) td {
+	/*padding-bottom: 0;*/
+	border-bottom: none !important;
+}
+
+td.colhead {
+	margin: -11px;
+	margin-bottom: 10px;
+	padding: 8px !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
+	background: -moz-linear-gradient(center bottom, #ccc, #ddd);
+	border: 1px solid #aeaeae !important;
+	border-bottom-color: #bbb !important;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+	font: bold 10pt Helvetica, Arial, sans-serif !important;
+	color: #575757 !important;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	white-space: nowrap;
+}
+
+div.permission_container {
+	float: left;
+	width: 32%;
+}
+
+div.permission_container:nth-child(2) {
+	padding: 0px 2%;
+}
+
+div.permission_container>table {
+	width: 100%;
+}
 
 
-/*########################################################*/
-/*######### USER PROFILE #################################*/
-/*########################################################*/
+/* ========================================================================
+   Torrents, browse lists & filter panel
+   ======================================================================== */
+
+
+#discog_table.torrent_table .colhead_dark td:nth-child(4) {
+	width: 15%;
+}
+
+#discog_table.torrent_table .colhead_dark td:first-child {
+	width: 50px !important;
+}
+
 .panel .head:first-child,
 .panel .colhead td:first-child,
 .panel .recent .colhead td:first-child,
@@ -826,7 +1062,6 @@ input[name="search"],
 .panel .navigation:not(.box):first-child {
 	margin: -5px -5px 5px -5px !important;
 }
-
 
 .panel .head,
 .panel .colhead td,
@@ -838,97 +1073,503 @@ input[name="search"],
 	margin: 0px -5px 0px -5px !important;
 }
 
-
-.panel .info.box table.center tr,
-.panel .info.box table.center tr td {
-	border-color: #bbb;
+.torrent_table .colhead_dark td:first-child {
+	width: 70%;
 }
 
-
-.panel .info.box table.center tr:last-child,
-.panel .info.box table.center tr:last-child td {
-	border-bottom-width: 0px;
+.torrent_table tr.group_torrent td:first-child {
+	white-space: nowrap !important;
 }
 
-
-.panel .info.box table.center tr td {
-	padding: 5px 20px;
-	white-space: nowrap;
+.torrent_table tr.group_torrent td:first-child>span {
+	padding-left: 10px;
 }
 
-
-.usermenu .navigation:not(.box),
-.usermenu .head {
-	border-width: 0px !important;
+#bookmarks .torrent_table .colhead_dark td:first-child {
+	width: 5%;
 }
 
-
-#slider .box.usermenu {
-	padding: 0px !important;
+.torrent_table.sign {
+	text-align: center;
 }
 
-
-#user #content .leftbar ul {
-	list-style: none;
+.torrent_table .group {
+	background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
+	background: -moz-linear-gradient(center bottom, #eee, #f3f3f3);
 }
 
-
-/*########################################################*/
-/*######### CONTENT ######################################*/
-/*########################################################*/
-#content {
-	width: 100%;
-	max-width: 960px;
-	margin: 0 auto !important;
-	position: relative;
-	overflow: visible;
+.torrent_table .group strong {
+	font-size: 12pt;
 }
 
-
-#content .main_column,
-#content .sidebar {
-	position: relative;
+.torrent_table .group strong a {
+	color: #444;
 }
 
-
-#content .main_column {
-	float: left;
-	width: 72.4%;
+.recent {
+	margin-bottom: 20px !important;
+	padding: 0;
+	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
+0px .recent td img {
+	width: 118px;
+	height: 118px;
+}
 
-#content .sidebar {
+.cats_col {
+	width: 25px;
+}
+
+.cats_music,
+.cats_comics,
+.cats_audiobooks,
+.cats_elearningvideos,
+.cats_comedy,
+.cats_applications,
+.cats_ebooks {
+	width: 25px !important;
+	height: 25px !important;
+	margin: 0 !important;
+}
+
+.cats_music {
+	background: url('http://what.cd/static/styles/mono/icons/music.png');
+}
+
+.cats_comics {
+	background: url('http://what.cd/static/styles/mono/icons/comics.png');
+}
+
+.cats_audiobooks {
+	background: url('http://what.cd/static/styles/mono/icons/audiobooks.png');
+}
+
+.cats_elearningvideos {
+	background: url('http://what.cd/static/styles/mono/icons/elearning.png');
+}
+
+.cats_comedy {
+	background: url('http://what.cd/static/styles/mono/icons/comedy.png');
+}
+
+.cats_applications {
+	background: url('http://what.cd/static/styles/mono/icons/applications.png');
+}
+
+.cats_ebooks {
+	background: url('http://what.cd/static/styles/mono/icons/ebooks.png');
+}
+
+#recommended .head {
+	margin-bottom: -11px !important;
+	border-bottom-color: #aeaeae !important;
+}
+
+#recommended #vanityhouse {
+	margin-top: 21px;
+}
+
+.hide_torrents a,
+.show_torrents a {
+	display: block;
+	width: 25px;
+	height: 25px;
+	background-image: url('http://what.cd/static/styles/mono/icons/show-hide.png');
+	background-repeat: no-repeat;
+}
+
+.hide_torrents a {
+	background-position: center top;
+}
+
+.show_torrents a {
+	background-position: center bottom;
+}
+
+#torrent_table .colhead td[width="100%"] {
+	width: 50% !important;
+}
+
+#discog_table .box.center {
+	background: #f8f8f8;
+	border: none;
+	padding: 10px;
+	text-align: center;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-border-radius: 5px;
+}
+
+#discog_table .box.center a {
+	color: #666;
+	font-weight: bold;
+	margin-right: 5px;
+	line-height: 18pt;
+}
+
+.group_torrent td span {
 	float: right;
-	width: 25.5%;
 }
 
+body:not(#torrents) .sidebar .head {
+	width: auto;
+	box-sizing: border-box;
+}
 
-#collage_table {
-	margin-bottom: 20px;
-	background: none;
+body#torrent .sidebar .head {}
+
+#SnatchData {
+	max-width: 960px;
+}
+
+div.thin>h2+div>form table,
+div.thin>h2+.linkbox+div table,
+.filter_torrents table {
+	width: 100%;
+}
+
+div.thin>h2+.linkbox+div table td:first-child,
+.filter_torrents table:nth-child(1) td:first-child {
+	font-size: 10pt;
+}
+
+.filter_torrents table.cat_list td {
+	width: 8% !important;
+	text-align: center !important;
+}
+
+.filter_torrents table:nth-child(2) td {
+	padding: 17px 0 15px 0 !important;
+	background: #e0e0e0;
+}
+
+.filter_torrents .cat_list[width="100%"] {
+	background: #e4e4e4;
 	border: none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 }
 
+div.thin>h2+div>form table td.label,
+div.thin>h2+.linkbox+div form table td.label,
+.filter_torrents table td:first-child {
+	width: 20%;
+	padding-right: 10px;
+	text-align: right;
+}
 
-#collage_table td img {
-	width: 140px;
-	height: 140px;
+div.thin>h2+div>form table td.label {
+	width: 12%;
+}
+
+.filter_torrents .box.pad>table {
+	background: transparent;
+}
+
+.filter_torrents .box.pad>table tr {
+	border-width: 0px;
+}
+
+.filter_torrents .box.pad>table tr {
+	border-width: 0px;
+}
+
+.filter_torrents .submit {
+	position: relative;
+	padding-top: 15px;
+}
+
+.filter_torrents .submit input[value="Reset"] {
+	display: none;
+}
+
+.filter_torrents .submit span {
+	position: absolute;
+	left: 120px;
+	font-size: 12pt;
+	color: #444;
+	line-height: 24pt;
+}
+
+.country_list td {
+	font-size: 9pt !important;
+	padding-top: 10px !important;
+	text-align: left !important;
+	white-space: normal !important;
+}
+
+#torrents .filter_torrents .box.pad .country_list table:nth-child(1) tr:first-child td {
+	padding-top: 10px !important;
+}
+
+.country_list td:first-child {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.filter_torrents .submit span:before {
+	content: "(";
+}
+
+.filter_torrents .submit span:after {
+	content: ")";
+}
+
+.filter_torrents .submit input[name="setdefault"],
+.filter_torrents .submit input[name="cleardefault"] {
+	float: right;
+	margin-left: 8px;
+}
+
+.filter_torrents .cat_list {
+	border: none !important;
+}
+
+.filter_torrents .cat_list.hide {
+	display: none;
+}
+
+.lightbox>a {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
+
+#torrents h2+div.linkbox+h3+table.border>tbody>tr td:nth-child(2) {
+	width: 55% !important;
+}
+
+div.pad ul,
+div.body ul,
+table.torrent_table blockquote>ul {
+	padding-left: 15px;
+}
+
+.torrent_table tr.group_torrent td:first-child {
+	white-space: normal !important;
+}
+
+#discog_table.torrent_table .colhead_dark td:nth-child(4) {
+	width: auto;
+}
+
+.tor_highlight_seed {
+	color: #0f0 !important;
 }
 
 
-#collages,
-#collage_table,
-.forum_index,
-.torrent_table,
-.forum_post.box,
-.recent,
-table.border,
-.torrent_table.grouping,
-#userhistory table {
-	width: 100% !important;
+/* ========================================================================
+   Forums: threads, posts, read/unread markers, BBcode editor
+   ======================================================================== */
+
+
+h1,
+h2,
+h3,
+tr.forum_group_header {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: #444 !important;
 }
+
+h3,
+tr.forum_group_header {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 14pt;
+	line-height: 14pt;
+}
+
+form#quickpostform textarea {
+	height: 160px;
+	margin: 0 auto;
+}
+
+#forums #content .thin>table:not(forum_post):not(.box) {
+	border-width: 0px !important;
+	border-collapse: separate;
+	padding: 0px;
+}
+
+#forums #content .thin>table:not(forum_post):not(.box) td {
+	border-right-width: 0px !important;
+	border-bottom-width: 0px !important;
+}
+
+#forums #content .thin>table:not(forum_post):not(.box) tr:not(.forum_group_header) td:last-child {
+	border-right-width: 1px !important;
+}
+
+#forums #content .thin>table:not(forum_post):not(.box) tr:last-child td {
+	border-bottom-width: 1px !important;
+}
+
+tr.forum_group_header {
+	background: #eee;
+	border-width: 0px !important;
+}
+
+tr.forum_group_header td {
+	border-width: 0px !important;
+	padding: 0px !important;
+	padding-bottom: 10px !important;
+}
+
+td.unread,
+td.read,
+td.read_locked,
+td.unread_sticky,
+td.read_locked_sticky,
+td.unread_locked_sticky,
+td.read_sticky {
+	width: 3.5%;
+	background-repeat: none;
+	.label background-position: center center;
+}
+
+td.unread {
+	background-image: url('http://what.cd/static/styles/mono/icons/unread.png');
+}
+
+.label td.read {
+	background-image: url('http://what.cd/static/styles/mono/icons/read.png');
+}
+
+td.read_locked {
+	background-image: url('http://what.cd/static/styles/mono/icons/read-locked.png');
+}
+
+td.unread_sticky {
+	background-image: url('http://what.cd/static/styles/mono/icons/sticky-unread.png');
+}
+
+td.read_sticky {
+	background-image: url('http://what.cd/static/styles/mono/icons/sticky-read.png');
+}
+
+td.read_locked_sticky {
+	background-image: url('http://what.cd/static/styles/mono/icons/sticky-read-locked.png');
+}
+
+td.unread_locked_sticky {
+	background-image: url('http://what.cd/static/styles/mono/icons/sticky-unread-locked.png');
+}
+
+table.forum_index tr td:nth-child(3) .last_topic a,
+td.unread+td>h4 a,
+td.unread+td>span.last_topic strong a,
+td.unread_locked+td>span.last_topic strong a,
+td.unread_sticky+td>span.last_topic strong a,
+td.unread_locked_sticky+td>span.last_topic strong a {
+	color: #626262;
+}
+
+td.read+td>h4 a,
+td.read+td>span.last_topic strong a,
+td.read_locked+td>span.last_topic strong a,
+td.read_sticky+td>span.last_topic strong a,
+td.read_locked_sticky+td>span.last_topic strong a {
+	color: #888;
+}
+
+span.last_read a {
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 2px 0 0 5px;
+	background: url('http://what.cd/static/styles/mono/icons/goto.png') no-repeat center -4px;
+}
+
+span.last_read a:hover {
+	background-position-y: -24px;
+}
+
+.forum_post {
+	background-color: #f6f6f6 !important;
+}
+
+.forum_post .avatar {
+	padding: 10px;
+	width: 100px !important;
+	border-right: 1px solid #bbb;
+}
+
+.forum_post .avatar img,
+#forums .forum_post tbody tr:last-child td {
+	max-width: 120px !important;
+	white-space: normal;
+}
+
+.forum_post .body {
+	background: #fff;
+	padding: 15px;
+	white-space: normal;
+	width: 787px;
+}
+
+.forum_post .signature {
+	border-top: 1px solid #DDD;
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+.forum_post td.body span input[type="button"] {
+	margin-right: 3px;
+}
+
+.bbcodetextbox {
+	background-color: transparent;
+}
+
+.b1h,
+.b2h,
+.b3h,
+.b4h,
+.b1bh,
+.b2bh,
+.b3bh,
+.b4bh,
+.headh,
+.contenth {
+	/* a really ghetto way to make rounded corners */
+	background-color: transparent !important;
+	border: 0px solid transparent !important;
+}
+
+.b1h,
+.b1bh {
+	display: none !important;
+}
+
+.bbcodetextbox .headh {
+	background-color: transparent;
+}
+
+.bbcodetextbox .headh .bbcode-btntoolbar {
+	background-color: transparent;
+	margin: 0 auto;
+	text-align: center !important;
+}
+
+.bbcodetextbox .headh .bbcode-smileys {
+	background-color: transparent;
+	min-height: 35px;
+}
+
+.bbcodetextbox .contenth {
+	background-color: transparent;
+}
+
+#quickreplybuttons {
+	margin: 5px 0px 0px 0px;
+}
+
+
+/* ========================================================================
+   Requests
+   ======================================================================== */
 
 
 table[width="100%"],
@@ -954,121 +1595,185 @@ table.staff,
 	color: #565656;
 }
 
+.thin>table {
+	background: #fff;
+}
 
-.box.pad {
-	padding: 0 !important;
-	background: transparent;
+#requests div.thin div:nth-child(3) form table:nth-child(6) td {
+	padding-top: 13px !important;
+	padding: 13px 0 0 0 !important;
+	border-bottom: 0 !important;
+}
+
+#torrents .filter_torrents .box.pad table:nth-child(1) tr:first-child td,
+#requests div.thin div:nth-child(3) form table:nth-child(3) tr:first-child td,
+#collage div.thin form table:nth-child(2) tr:first-child td {
+	padding-top: 0 !important;
+}
+
+
+/* ========================================================================
+   Collages
+   ======================================================================== */
+
+
+#collage_table {
+	margin-bottom: 20px;
+	background: none;
 	border: none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 }
 
-.box.pad table {
-	background: #fff;
+#collage_table td img {
+	width: 140px;
+	height: 140px;
+}
+
+#collages,
+#collage_table,
+.forum_index,
+.torrent_table,
+.forum_post.box,
+.recent,
+table.border,
+.torrent_table.grouping,
+#userhistory table {
+	width: 100% !important;
+}
+
+#collage div.thin form table {
+	background: none;
+	border: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+#torrents div.thin>h2+div>form div.submit,
+#collage div.thin form div.submit {
+	padding-top: 13px;
 }
 
 
-.head,
-.colhead td,
-.recent .colhead td,
-.colhead_dark td,
-.colhead th,
-.colhead_dark th,
-.navigation:not(.box) {
-	margin: -11px;
-	margin-bottom: 10px;
-	padding: 8px !important;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc)) !important;
-	background: -moz-linear-gradient(center bottom, #ccc, #ddd) !important;
-	border: 1px solid #aeaeae !important;
-	border-bottom-color: #bbb !important;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-	font: bold 10pt Helvetica, Arial, sans-serif !important;
-	color: #575757 !important;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+/* ========================================================================
+   Inbox
+   ======================================================================== */
+
+
+table[width="100%"] td:first-child,
+.torrent_table td:first-child,
+#requests td:first-child,
+#collages td:first-child,
+.forum_index td:first-child,
+#torrent_table td:first-child,
+table.border td:first-child,
+.linkbox+table td:first-child,
+form#messageform table td:first-child,
+#inbox form table td:first-child {
+	border-left: 1px solid #aeaeae;
 }
 
-
-#forums #content .thin>table:not(forum_post):not(.box) {
-	border-width: 0px !important;
-	border-collapse: separate;
-	padding: 0px;
+table[width="100%"] td:last-child,
+.torrent_table td:last-child,
+#requests td:last-child,
+#collages td:last-child,
+.forum_index td:last-child,
+#torrent_table td:last-child,
+table.border td:last-child,
+.linkbox+table td:last-child,
+form#messageform table td:last-child,
+#inbox form table td:last-child {
+	border-right: 1px solid #aeaeae;
 }
 
-
-#forums #content .thin>table:not(forum_post):not(.box) td {
-	border-right-width: 0px !important;
-	border-bottom-width: 0px !important;
+#inbox form table tr:last-child td {
+	border-bottom: 1px solid #aeaeae !important;
 }
 
-
-#forums #content .thin>table:not(forum_post):not(.box) tr:not(.forum_group_header) td:last-child {
-	border-right-width: 1px !important;
+#inbox form table td:first-child {
+	border-left: 1px solid #aeaeae !important;
 }
 
-
-#forums #content .thin>table:not(forum_post):not(.box) tr:last-child td {
-	border-bottom-width: 1px !important;
+#inbox form table td:last-child {
+	border-right: 1px solid #aeaeae !important;
 }
 
-
-tr.forum_group_header {
-	background: #eee;
-	border-width: 0px !important;
+.recent td:first-child {
+	border-left: 1px solid #aeaeae;
 }
 
-
-tr.forum_group_header td {
-	border-width: 0px !important;
-	padding: 0px !important;
-	padding-bottom: 10px !important;
+.recent td:last-child {
+	border-right: 1px solid #aeaeae;
 }
 
+.forum_post blockquote,
+#inbox div.body>blockquote,
+blockquote {
+	padding: 10px !important;
+	background: #fafafa url('http://what.cd/static/styles/mono/icons/quote-mark.png') no-repeat 98% 5px !important;
+	border: 1px solid #ddd !important;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	color: #565656 !important;
+}
 
-table[width="100%"] td,
-.torrent_table td,
-#requests td,
-#collages td,
-.forum_index td,
-table.border td,
-.linkbox+table td,
-form#messageform table td,
-form[action="user.php"] table td,
-table.staff td.nobr,
+#torrents .filter_torrents .box.pad,
+#torrents div.thin>h2+div>form,
+#requests div.thin div:nth-child(3) form,
+#collage div.thin form,
+#inbox #searchbox {
+	padding: 15px !important;
+	background: #e4e4e4;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+#inbox form table {
+	margin-top: 20px;
+}
+
 #inbox form table td {
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-bottom: none;
-	white-space: normal;
+	border: 1px solid #ccc !important;
+}
+
+#inbox form table td:nth-child(1) {
+	width: 3%;
+}
+
+#inbox form table td:nth-child(3) {
+	width: 15%;
+}
+
+#inbox form table td:nth-child(4) {
+	width: 20%;
+}
+
+#inbox #searchbox {
+	margin-top: -20px;
+}
+
+#inbox #searchbox input[type="text"] {
+	margin-top: 10px;
 }
 
 
-table[width="100%"] .colhead td,
-table[width="100%"] .colhead_dark td,
-.torrent_table .colhead_dark td,
-#requests .colhead_dark td,
-#collages .colhead td,
-.forum_index .colhead td,
-#torrent_table .colhead td,
-table.border .colhead td,
-.linkbox+table .colhead td,
-form#messageform .colhead table td,
-#inbox form table .colhead td {
-	border: 1px solid #aeaeae !important;
+/* ========================================================================
+   User profile & series pages
+   ======================================================================== */
+
+
+.usermenu .navigation:not(.box),
+.usermenu .head {
+	border-width: 0px !important;
 }
 
-
-.torrent_table .colhead_dark td:first-child {
-	width: 70%;
+#slider .box.usermenu {
+	padding: 0px !important;
 }
 
-.torrent_table tr.group_torrent td:first-child {
-	white-space: nowrap !important;
-}
-
-.torrent_table tr.group_torrent td:first-child>span {
-	padding-left: 10px;
+#user #content .leftbar ul {
+	list-style: none;
 }
 
 #series #content .sidebar .box .stats.nobullet table tr {
@@ -1085,632 +1790,18 @@ form#messageform .colhead table td,
 	width: 220px !important;
 }
 
-
-#bookmarks .torrent_table .colhead_dark td:first-child {
-	width: 5%;
-}
-
-
-table[width="100%"] td:first-child,
-.torrent_table td:first-child,
-#requests td:first-child,
-#collages td:first-child,
-.forum_index td:first-child,
-#torrent_table td:first-child,
-table.border td:first-child,
-.linkbox+table td:first-child,
-form#messageform table td:first-child,
-#inbox form table td:first-child {
-	border-left: 1px solid #aeaeae;
-}
-
-
-table[width="100%"] td:last-child,
-.torrent_table td:last-child,
-#requests td:last-child,
-#collages td:last-child,
-.forum_index td:last-child,
-#torrent_table td:last-child,
-table.border td:last-child,
-.linkbox+table td:last-child,
-form#messageform table td:last-child,
-#inbox form table td:last-child {
-	border-right: 1px solid #aeaeae;
-}
-
-
-#inbox form table tr:last-child td {
-	border-bottom: 1px solid #aeaeae !important;
-}
-
-
-#inbox form table td:first-child {
-	border-left: 1px solid #aeaeae !important;
-}
-
-
-#inbox form table td:last-child {
-	border-right: 1px solid #aeaeae !important;
-}
-
-
-.torrent_table.sign {
-	text-align: center;
-}
-
-
-table.staff td.nobr {
-	border-right: 1px solid #ccc !important;
-}
-
-
-table.staff td.nobr:last-child {
-	border-right: 1px solid #aeaeae !important;
-}
-
-
-.torrent_table .group {
-	background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
-	background: -moz-linear-gradient(center bottom, #eee, #f3f3f3);
-}
-
-
-.torrent_table .group strong {
-	font-size: 12pt;
-}
-
-
-.torrent_table .group strong a {
-	color: #444;
-}
-
-
-.recent {
-	margin-bottom: 20px !important;
-	padding: 0;
-	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-
-.recent td {
-	padding: 10px;
-	background: #fff;
-	border: 1px solid #aeaeae;
-	border-right: 1px solid #ccc;
-	border-left: none;
-	border-top: none;
-}
-
-
-.recent td:first-child {
-	border-left: 1px solid #aeaeae;
-}
-
-
-.recent td:last-child {
-	border-right: 1px solid #aeaeae;
-}
-
-0px .recent td img {
-	width: 118px;
-	height: 118px;
-}
-
-
-.cats_col {
-	width: 25px;
-}
-
-
-.cats_music,
-.cats_comics,
-.cats_audiobooks,
-.cats_elearningvideos,
-.cats_comedy,
-.cats_applications,
-.cats_ebooks {
-	width: 25px !important;
-	height: 25px !important;
-	margin: 0 !important;
-}
-
-
-.cats_music {
-	background: url('http://what.cd/static/styles/mono/icons/music.png');
-}
-
-
-.cats_comics {
-	background: url('http://what.cd/static/styles/mono/icons/comics.png');
-}
-
-
-.cats_audiobooks {
-	background: url('http://what.cd/static/styles/mono/icons/audiobooks.png');
-}
-
-
-.cats_elearningvideos {
-	background: url('http://what.cd/static/styles/mono/icons/elearning.png');
-}
-
-
-.cats_comedy {
-	background: url('http://what.cd/static/styles/mono/icons/comedy.png');
-}
-
-
-.cats_applications {
-	background: url('http://what.cd/static/styles/mono/icons/applications.png');
-}
-
-
-.cats_ebooks {
-	background: url('http://what.cd/static/styles/mono/icons/ebooks.png');
-}
-
-
-#recommended .head {
-	margin-bottom: -11px !important;
-	border-bottom-color: #aeaeae !important;
-}
-
-
-#recommended #vanityhouse {
-	margin-top: 21px;
-}
-
-
-.hide_torrents a,
-.show_torrents a {
-	display: block;
-	width: 25px;
-	height: 25px;
-	background-image: url('http://what.cd/static/styles/mono/icons/show-hide.png');
-	background-repeat: no-repeat;
-}
-
-
-.hide_torrents a {
-	background-position: center top;
-}
-
-
-.show_torrents a {
-	background-position: center bottom;
-}
-
-
-#torrent_table .colhead td[width="100%"] {
-	width: 50% !important;
-}
-
-
-#discog_table .box.center {
-	background: #f8f8f8;
-	border: none;
-	padding: 10px;
-	text-align: center;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-border-radius: 5px;
-}
-
-
-#discog_table .box.center a {
-	color: #666;
-	font-weight: bold;
-	margin-right: 5px;
-	line-height: 18pt;
-}
-
-
-.group_torrent td span {
-	float: right;
-}
-
-
-.linkbox {
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-
-.head a {
-	color: #3e3e3e;
-}
-
-
-.main_column .box {
-	width: auto;
-	box-sizing: border-box;
-}
-
-
-.main_column .head {
-	width: auto;
-	box-sizing: border-box;
-}
-
-
-.sidebar .box {
-	width: auto;
-	box-sizing: border-box;
-}
-
-
-body:not(#torrents) .sidebar .head {
-	width: auto;
-	box-sizing: border-box;
-}
-
-body#torrent .sidebar .head {}
-
-
-.sidebar .box ul li {
-	list-style: none;
-}
-
-
-td.unread,
-td.read,
-td.read_locked,
-td.unread_sticky,
-td.read_locked_sticky,
-td.unread_locked_sticky,
-td.read_sticky {
-	width: 3.5%;
-	background-repeat: none;
-	.label background-position: center center;
-}
-
-
-td.unread {
-	background-image: url('http://what.cd/static/styles/mono/icons/unread.png');
-}
-
-.label td.read {
-	background-image: url('http://what.cd/static/styles/mono/icons/read.png');
-}
-
-
-td.read_locked {
-	background-image: url('http://what.cd/static/styles/mono/icons/read-locked.png');
-}
-
-
-td.unread_sticky {
-	background-image: url('http://what.cd/static/styles/mono/icons/sticky-unread.png');
-}
-
-
-td.read_sticky {
-	background-image: url('http://what.cd/static/styles/mono/icons/sticky-read.png');
-}
-
-
-td.read_locked_sticky {
-	background-image: url('http://what.cd/static/styles/mono/icons/sticky-read-locked.png');
-}
-
-
-td.unread_locked_sticky {
-	background-image: url('http://what.cd/static/styles/mono/icons/sticky-unread-locked.png');
-}
-
-
-table.forum_index tr td:nth-child(3) .last_topic a,
-td.unread+td>h4 a,
-td.unread+td>span.last_topic strong a,
-td.unread_locked+td>span.last_topic strong a,
-td.unread_sticky+td>span.last_topic strong a,
-td.unread_locked_sticky+td>span.last_topic strong a {
-	color: #626262;
-}
-
-
-td.read+td>h4 a,
-td.read+td>span.last_topic strong a,
-td.read_locked+td>span.last_topic strong a,
-td.read_sticky+td>span.last_topic strong a,
-td.read_locked_sticky+td>span.last_topic strong a {
-	color: #888;
-}
-
-
-span.last_read a {
-	display: block;
-	width: 12px;
-	height: 12px;
-	margin: 2px 0 0 5px;
-	background: url('http://what.cd/static/styles/mono/icons/goto.png') no-repeat center -4px;
-}
-
-
-span.last_read a:hover {
-	background-position-y: -24px;
-}
-
-
-.forum_post {
-	background-color: #f6f6f6 !important;
-}
-
-
-.forum_post .avatar {
-	padding: 10px;
-	width: 100px !important;
-	border-right: 1px solid #bbb;
-}
-
-
-.forum_post .avatar img,
-#forums .forum_post tbody tr:last-child td {
-	max-width: 120px !important;
-	white-space: normal;
-}
-
-
-.forum_post .body {
-	background: #fff;
-	padding: 15px;
-	white-space: normal;
-	width: 787px;
-}
-
-
-.forum_post ul,
-.forum_post ol {
-	margin-left: 25px;
-}
-
-
-.forum_post blockquote,
-#inbox div.body>blockquote,
-blockquote {
-	padding: 10px !important;
-	background: #fafafa url('http://what.cd/static/styles/mono/icons/quote-mark.png') no-repeat 98% 5px !important;
-	border: 1px solid #ddd !important;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	color: #565656 !important;
-}
-
-
-.forum_post .signature {
-	border-top: 1px solid #DDD;
-	margin-top: 10px;
-	padding-top: 10px;
-}
-
-
-.forum_post td.body span input[type="button"] {
-	margin-right: 3px;
-}
-
-
-.thin {
-	position: relative;
-	width: 100%;
-	max-width: 960px;
-}
-
-
-#SnatchData {
-	max-width: 960px;
-}
-
-.thin>table {
-	background: #fff;
-}
-
-
-#torrents .filter_torrents .box.pad,
-#torrents div.thin>h2+div>form,
-#requests div.thin div:nth-child(3) form,
-#collage div.thin form,
-#inbox #searchbox {
-	padding: 15px !important;
-	background: #e4e4e4;
-	border: none;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-
-
-#collage div.thin form table {
-	background: none;
-	border: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-}
-
-
-#requests div.thin div:nth-child(3) form table:nth-child(6) td {
-	padding-top: 13px !important;
-	padding: 13px 0 0 0 !important;
-	border-bottom: 0 !important;
-}
-
-
-#torrents div.thin>h2+div>form div.submit,
-#collage div.thin form div.submit {
-	padding-top: 13px;
-}
-
-
-div.thin>h2+div,
-div.thin>h2+.linkbox+div {
-	margin-bottom: 20px;
-}
-
-
-div.thin>h2+div>form table,
-div.thin>h2+.linkbox+div table,
-.filter_torrents table {
-	width: 100%;
-}
-
-
-div.thin>h2+.linkbox+div table {
-	border: none;
-	background: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-}
-
-
-div.thin>h2+div table td,
-div.thin>h2+.linkbox+div table td,
-.filter_torrents table td {
-	padding: 10px 0;
-	border: none !important;
-	border-bottom: 1px solid #d1d1d1 !important;
-}
-
-
-div.thin>h2+.linkbox+div td {
-	padding-left: 10px !important;
-}
-
-
-div.thin>h2+.linkbox+div table td:first-child,
-.filter_torrents table:nth-child(1) td:first-child {
-	font-size: 10pt;
-}
-
-
-#torrents .filter_torrents .box.pad table:nth-child(1) tr:first-child td,
-#requests div.thin div:nth-child(3) form table:nth-child(3) tr:first-child td,
-#collage div.thin form table:nth-child(2) tr:first-child td {
-	padding-top: 0 !important;
-}
-
-
-.filter_torrents table.cat_list td {
-	width: 8% !important;
-	text-align: center !important;
-}
-
-
-.filter_torrents table:nth-child(2) td {
-	padding: 17px 0 15px 0 !important;
-	background: #e0e0e0;
-}
-
-
-.filter_torrents .cat_list[width="100%"] {
-	background: #e4e4e4;
-	border: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-}
-
-
-div.thin>h2+div>form table td.label,
-div.thin>h2+.linkbox+div form table td.label,
-.filter_torrents table td:first-child {
-	width: 20%;
-	padding-right: 10px;
-	text-align: right;
-}
-
-
-div.thin>h2+div>form table td.label {
-	width: 12%;
-}
-
-
-
-/*########################################################*/
-/*######### FILTER TORRENTS ##############################*/
-/*########################################################*/
-.filter_torrents .box.pad>table {
-	background: transparent;
-}
-
-
-.filter_torrents .box.pad>table tr {
-	border-width: 0px;
-}
-
-
-.filter_torrents .box.pad>table tr {
-	border-width: 0px;
-}
-
-
-.filter_torrents .submit {
-	position: relative;
-	padding-top: 15px;
-}
-
-
-.filter_torrents .submit input[value="Reset"] {
-	display: none;
-}
-
-
-.filter_torrents .submit span {
-	position: absolute;
-	left: 120px;
-	font-size: 12pt;
-	color: #444;
-	line-height: 24pt;
-}
-
-
-.country_list td {
-	font-size: 9pt !important;
-	padding-top: 10px !important;
-	text-align: left !important;
-	white-space: normal !important;
-}
-
-
-#torrents .filter_torrents .box.pad .country_list table:nth-child(1) tr:first-child td {
-	padding-top: 10px !important;
-}
-
-
-.country_list td:first-child {
-	padding-left: 3px;
-	padding-right: 3px;
-}
-
-
-.filter_torrents .submit span:before {
-	content: "(";
-}
-
-
-.filter_torrents .submit span:after {
-	content: ")";
-}
-
-
-.filter_torrents .submit input[name="setdefault"],
-.filter_torrents .submit input[name="cleardefault"] {
-	float: right;
-	margin-left: 8px;
+form[action="user.php"] table textarea,
+form[action="user.php"] table input[type="text"] {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 
-
-.filter_torrents .cat_list {
-	border: none !important;
-}
-
-
-.filter_torrents .cat_list.hide {
-	display: none;
-}
 
+/* ========================================================================
+   Artist autocomplete dropdown
+   ======================================================================== */
 
 
-/*########################################################*/
-/*######### ARTIST COMPLETE ##############################*/
-/*########################################################*/
 ul#artistcomplete {
 	position: absolute;
 	left: 185px;
@@ -1726,14 +1817,12 @@ ul#artistcomplete {
 	color: #444;
 }
 
-
 #artistcomplete li:first-child {
 	-webkit-border-top-left-radius: 4px;
 	-moz-border-radius-topleft: 4px;
 	-webkit-border-top-right-radius: 4px;
 	-moz-border-radius-topright: 4px;
 }
-
 
 #artistcomplete li:last-child {
 	-webkit-border-bottom-left-radius: 4px;
@@ -1742,24 +1831,17 @@ ul#artistcomplete {
 	-moz-border-radius-bottomright: 4px;
 }
 
-
-#artistcomplete li {
-	display: block !important;
-	-webkit-box-sizing: border-box;
-	padding: 5px 10px;
-}
-
-
 #artistcomplete li.highlight {
 	background: #f5f5f5;
 	width: 100%;
 }
 
 
+/* ========================================================================
+   Lightbox & curtain
+   ======================================================================== */
 
-/*########################################################*/
-/*######### LIGHTBOX #####################################*/
-/*########################################################*/
+
 .lightbox {
 	background-color: rgba(0, 0, 0, .4);
 	display: none;
@@ -1774,20 +1856,11 @@ ul#artistcomplete {
 	z-index: 200;
 }
 
-
-.lightbox>a {
-	display: inline-block;
-	height: 100%;
-	width: 100%;
-}
-
-
 .lightbox img {
 	box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 	display: block;
 	margin: 100px auto;
 }
-
 
 #curtain {
 	display: none;
@@ -1801,71 +1874,15 @@ ul#artistcomplete {
 }
 
 
-#torrents h2+div.linkbox+h3+table.border>tbody>tr td:nth-child(2) {
-	width: 55% !important;
-}
-
-
-form[action="user.php"] table textarea,
-form[action="user.php"] table input[type="text"] {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-
-h3#irc+div.box.pad,
-h3#general+div.box.pad {
-	padding: 30px !important;
-	background: #f8f8f8;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-
-
-h3#irc+div.box.pad ul,
-h3#general+div.box.pad ul {
-	list-style: none;
-}
-
-
-h3#irc+div.box.pad ul li,
-h3#general+div.box.pad ul li {
-	margin-bottom: 8px;
-	padding-bottom: 8px;
-	border-bottom: 1px solid #ddd;
-}
-
-
-h3#irc+div.box.pad ul li:last-child,
-h3#general+div.box.pad ul li:last-child {
-	margin-bottom: 0;
-	padding-bottom: 0;
-	border-bottom: none;
-}
-
-
-table.border[width="100%"] {
-	margin-bottom: 20px;
-}
-
-
-table.border[width="100%"] tbody tr:nth-child(5) td {
-	/*padding-bottom: 0;*/
-	border-bottom: none !important;
-}
+/* ========================================================================
+   Polls & graphs
+   ======================================================================== */
 
 
 #threadpoll p {
 	margin-bottom: 20px;
 	font-size: 16px;
 }
-
-
-ul.nobullet {
-	list-style-type: none;
-
-}
-
 
 li.graph {
 	width: 100%;
@@ -1879,7 +1896,6 @@ li.graph {
 	-moz-box-sizing: border-box;
 }
 
-
 li.graph .center_poll {
 	display: block;
 	height: 8px;
@@ -1891,212 +1907,15 @@ li.graph .center_poll {
 	-moz-box-shadow: inset 0 -2px 3px #555;
 }
 
-
 #index .graph .center_poll {
 	margin-top: 0;
 }
 
 
-#inbox form table {
-	margin-top: 20px;
-}
-
-
-#inbox form table td {
-	border: 1px solid #ccc !important;
-}
-
-
-#inbox form table td:nth-child(1) {
-	width: 3%;
-}
-
-
-#inbox form table td:nth-child(3) {
-	width: 15%;
-}
-
-
-#inbox form table td:nth-child(4) {
-	width: 20%;
-}
-
-
-#inbox #searchbox {
-	margin-top: -20px;
-}
-
-
-#inbox #searchbox input[type="text"] {
-	margin-top: 10px;
-}
-
-
-td {
-	border: 1px solid #BBB;
-	padding: 5px;
-	text-align: left;
-}
-
-tr {
-	border: 1px solid #BBB;
-}
-
-
-td.colhead {
-	margin: -11px;
-	margin-bottom: 10px;
-	padding: 8px !important;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
-	background: -moz-linear-gradient(center bottom, #ccc, #ddd);
-	border: 1px solid #aeaeae !important;
-	border-bottom-color: #bbb !important;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-	font: bold 10pt Helvetica, Arial, sans-serif !important;
-	color: #575757 !important;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-	white-space: nowrap;
-}
-
-
-div.permission_container {
-	float: left;
-	width: 32%;
-}
-
-
-div.permission_container:nth-child(2) {
-	padding: 0px 2%;
-}
-
-
-div.permission_container>table {
-	width: 100%;
-}
-
-
-div.pad ul,
-div.body ul,
-table.torrent_table blockquote>ul {
-	padding-left: 15px;
-}
-
-
-#debug_database pre,
-#debug_report pre {
-	white-space: pre-wrap;
-}
-
-.bbcodetextbox {
-	background-color: transparent;
-}
-
-
-.b1h,
-.b2h,
-.b3h,
-.b4h,
-.b1bh,
-.b2bh,
-.b3bh,
-.b4bh,
-.headh,
-.contenth {
-	/* a really ghetto way to make rounded corners */
-	background-color: transparent !important;
-	border: 0px solid transparent !important;
-}
-
-
-.b1h,
-.b1bh {
-	display: none !important;
-}
-
-
-.bbcodetextbox .headh {
-	background-color: transparent;
-}
-
-
-.bbcodetextbox .headh .bbcode-btntoolbar {
-	background-color: transparent;
-	margin: 0 auto;
-	text-align: center !important;
-}
-
-
-.bbcodetextbox .headh .bbcode-smileys {
-	background-color: transparent;
-	min-height: 35px;
-}
-
-
-.bbcodetextbox .contenth {
-	background-color: transparent;
-}
-
-
-#quickreplybuttons {
-	margin: 5px 0px 0px 0px;
-}
-
-
-
-/* Randy's Additions */
-
-.alertbar {
-	color: #fff;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	-o-border-radius: 6px;
-	border-radius: 6px;
-	padding: 4px 7px;
-}
-
-.alertbar[style] {
-	background-color: #5e5e5e !important;
-	border: 0 !important;
-}
-
-.pad.hide {
-	display: none;
-}
-
-.torrent_table tr.group_torrent td:first-child {
-	white-space: normal !important;
-}
-
-#discog_table.torrent_table .colhead_dark td:nth-child(4) {
-	width: auto;
-}
-
-.main_column .box {
-	width: auto;
-	box-sizing: border-box;
-}
-
-.main_column .head {
-	width: auto;
-	box-sizing: border-box;
-}
-
-#content>div>div.main_column>div.box.center>div.body>img {
-	width: 100% !important;
-	height: auto !important;
-}
-
-.tor_highlight_seed {
-	color: #0f0 !important;
-}
-
-
 /* ========================================================================
-   Responsive layout (media queries) — kept last so they win the cascade.
-   <960: linearize the absolutely-positioned header.  <768: stack columns
-   and let wide tables scroll.  (Mirrors the mono-ptp.css treatment.)
+   Responsive layout (media queries) — kept last so they win the cascade
    ======================================================================== */
+
 
 @media (max-width: 959px) {
 	body {
