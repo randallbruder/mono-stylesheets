@@ -167,8 +167,8 @@ tr {
 
 #playbutton {
 	position: absolute;
-	top: 50%;
-	left: 50%;
+	top: 50% !important;
+	left: 50% !important;
 	transform: translate(-50%, -50%);
 }
 
@@ -1797,6 +1797,22 @@ blockquote {
 	list-style: none;
 }
 
+/* The coda-slider (user profile) hard-codes pixel widths on .scroll and the
+   panels (computed by JS at the desktop layout). On narrow screens those fixed
+   widths overflow the viewport and the page overscrolls horizontally. Keep the
+   scroll viewport fluid so it can never be wider than its column. The userpage
+   uses .leftbar/.midbar (not .thin), so the .thin #slider rule never matched. */
+#user #content .leftbar,
+#user #content .midbar {
+	box-sizing: border-box;
+	max-width: 100%;
+}
+
+#user #slider .scroll {
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
 #series #content .sidebar .box .stats.nobullet table tr {
 	/* an attempt to remove the border from the youtube embed on the series page */
 	border-width: 0px !important;
@@ -2038,6 +2054,28 @@ li.graph .center_poll {
 		margin-top: 12px;
 		text-align: center;
 	}
+
+	/* User profile coda-slider -> drop the horizontal slider and stack all
+	   panels vertically. The slider's JS-set pixel widths can't fit a narrow
+	   viewport, so panels would otherwise be clipped by .scroll's overflow.
+	   The nav tabs (Profile/Info/...) remain as in-page anchor links. */
+	#user #slider .scroll {
+		overflow: visible !important;
+		height: auto !important;
+	}
+
+	#user #slider .scrollContainer {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	#user #slider .panel {
+		float: none !important;
+		width: 100% !important;
+		height: auto !important;
+		position: static !important;
+		margin-bottom: 20px;
+	}
 }
 
 @media (max-width: 768px) {
@@ -2054,12 +2092,25 @@ li.graph .center_poll {
 		margin-top: 20px;
 	}
 
+	/* user profile: avatar column stacks above the slider column */
+	#user #content .leftbar,
+	#user #content .midbar {
+		float: none !important;
+		width: 100% !important;
+		margin: 0 0 20px !important;
+	}
+
+	#user #content .leftbar {
+		text-align: center;
+	}
+
 	/* let wide tables scroll rather than widen the page
 	   (:not(.hidden) so we don't override the .hidden display:none utility) */
 	.torrent_table:not(.hidden),
 	.forum_index:not(.hidden),
 	table.border:not(.hidden),
-	#userhistory table:not(.hidden) {
+	#userhistory table:not(.hidden),
+	#user .panel .pad > table:not(.hidden) {
 		display: block;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
