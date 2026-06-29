@@ -156,20 +156,16 @@ tr {
 #banner {
 	max-width: 100%;
 	height: auto;
+	/* Trailer is a dead Flash embed; make the banner inert so clicking it
+	   no longer opens a broken player. */
+	pointer-events: none;
+	cursor: default;
 }
 
-/* Trailer play button: overlay it centered on the banner so it follows
-   the banner as it scales. Taking #playbutton out of flow collapses the
-   <center> box down to just the banner, so 50%/50% centers over it. */
-#content .thin center {
-	position: relative;
-}
-
-#playbutton {
-	position: absolute;
-	top: 50% !important;
-	left: 50% !important;
-	transform: translate(-50%, -50%);
+/* Hide the play button and the (empty) trailer lightbox entirely. */
+#playbutton,
+#trailer {
+	display: none !important;
 }
 
 #content .main_column {
