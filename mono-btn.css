@@ -1867,12 +1867,26 @@ blockquote {
 	word-wrap: break-word;
 }
 
-#content .sidebar .box table,
 #content .sidebar .box select,
 #content .sidebar .box input,
 #content .sidebar .box textarea {
 	max-width: 100%;
 	box-sizing: border-box;
+}
+
+/* Auto-layout tables (e.g. the Series Collector) ignore max-width and size to
+   their widest cell — a width:auto <select> with a long option ("Portable
+   Device") then pushes the table past the column. Fix the layout so columns
+   share the available width and the selects fill their cell instead. */
+#content .sidebar .box table {
+	width: 100%;
+	max-width: 100%;
+	table-layout: fixed;
+	box-sizing: border-box;
+}
+
+#content .sidebar .box table select {
+	width: 100%;
 }
 
 form[action="user.php"] table textarea,
