@@ -239,6 +239,15 @@ div.thin>h2+.linkbox+div td {
 	height: auto !important;
 }
 
+/* Images embedded in main-column box bodies (e.g. homepage news posts) can
+   carry fixed width/height attributes wider than the column; cap them so they
+   don't overflow the viewport. Uses max-width (not width) to avoid upscaling
+   small inline images. */
+.main_column .box .body img {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
 
 /* ========================================================================
    Helpers: utilities, colour & size classes
