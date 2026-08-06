@@ -2454,16 +2454,6 @@ div.permission_container>table {
    Screenshot comparison
    ======================================================================== */
 
-
-/* Built at runtime by bbcode js (ScreenshotComparison), so none of this
-   markup appears in a page dump until the "Show comparison" link is
-   clicked. Each row holds a hidden spacer image that reserves the row's
-   size, followed by one absolutely positioned container per comparison
-   side, all stacked on the spacer. The JS toggles sides purely by flipping
-   `visibility` on those images, so the stacking below is what makes the
-   feature work at all -- without it the sides render one under the other
-   and the hover/arrow-key toggling has no visible effect. */
-
 .screenshot-comparison__container {
 	position: fixed;
 	top: 0;
@@ -2481,9 +2471,6 @@ div.permission_container>table {
 	box-sizing: border-box;
 }
 
-/* Shrink-wrapped to the image so the hover sections the JS divides the row
-   into line up with the image itself -- exact for any number of sides, not
-   just two. Falls back to a full-width row where fit-content is missing. */
 .screenshot-comparison__row {
 	position: relative;
 	width: -moz-fit-content;
@@ -2492,14 +2479,10 @@ div.permission_container>table {
 	margin: 0 auto 10px;
 }
 
-/* Block removes the inline baseline gap under the spacer image, which would
-   otherwise make the row a few pixels taller than the image it wraps. */
 .screenshot-comparison__row img {
 	display: block;
 }
 
-/* Width matches the row so the stacked side lines up with the spacer image
-   under it; both are then capped by the base `img { max-width: 100% }`. */
 .screenshot-comparison__image-container {
 	position: absolute;
 	top: 0;
@@ -2507,8 +2490,6 @@ div.permission_container>table {
 	width: 100%;
 }
 
-/* JS positions this with jQuery .offset(), which needs a non-static
-   position; z-index keeps it above the image containers that follow it. */
 .screenshot-comparison__label {
 	position: relative;
 	z-index: 1;
